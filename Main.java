@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        MainView myfarmView = new MainView();
+        MainView mainView = new MainView();
+
+        MainController mainController = new MainController(mainView);
     }
 }
