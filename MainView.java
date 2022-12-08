@@ -7,7 +7,7 @@ import java.io.InputStream;
 public class MainView {
     private JFrame mainFrame;
     private JLabel farmerLbl, levelLbl, expLbl, daysLbl, coinsLbl;
-    private JLabel background, feedbackLbl;
+    private JLabel bgLbl, feedbackLbl;
     private JPanel farmPanel, menuPanel, toolPanel;
     private JButton sleepBtn, plantBtn, lvlBtn, exitBtn;
     private JButton plowBtn, waterBtn, fertilizerBtn, pickaxeBtn, shovelBtn;
@@ -26,22 +26,27 @@ public class MainView {
         this.mainFrame.setIconImage(logo.getImage());
 
         // Places background
-        this.background = new JLabel();
+        this.bgLbl = new JLabel();
         ImageIcon bgIcon = new ImageIcon("assets/farm.png");
         Image bg = bgIcon.getImage();
-        Image newBg = bg.getScaledInstance(1280, 800,  java.awt.Image.SCALE_SMOOTH);
+        Image newBg = bg.getScaledInstance(1280, 800,  Image.SCALE_SMOOTH);
         bgIcon = new ImageIcon(newBg);
-        this.background.setIcon(bgIcon);
-        this.background.setBounds(0, 0, 1280, 800);
+        this.bgLbl.setIcon(bgIcon);
+        this.bgLbl.setBounds(0, 0, 1280, 800);
 
         // Places farmer sprite
         this.farmerLbl = new JLabel();
-        this.farmerLbl.setIcon(new ImageIcon("assets/farmer.png"));
-        this.farmerLbl.setBounds(600,60, 100, 100);
+        ImageIcon farmerIcon = new ImageIcon("assets/farmer.png");
+        Image farmer = farmerIcon.getImage();
+        Image farmerBg = farmer.getScaledInstance(160, 160,  Image.SCALE_SMOOTH);
+        farmerIcon = new ImageIcon(farmerBg);
+        this.farmerLbl.setIcon(farmerIcon);
+        this.farmerLbl.setBounds(565,50, 160, 160);
 
         // Sets farmer level status
-        this.levelLbl = new JLabel("  Farmer |  Lvl. 0", JLabel.LEFT);
+        this.levelLbl = new JLabel("Farmer | Lvl. 0");
         this.levelLbl.setForeground(new Color(0x96584F));
+        this.levelLbl.setBounds(45, 26, 380, 50);
 
         try {
             InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
@@ -49,11 +54,6 @@ public class MainView {
             levelLbl.setFont(font.deriveFont(Font.PLAIN, 21f));
         }
         catch(Exception e){}
-
-        this.levelLbl.setBackground(new Color(0xFBE6DB));
-        this.levelLbl.setOpaque(true);
-        this.levelLbl.setBorder(border);
-        this.levelLbl.setBounds(20, 20, 380, 50);
 
         // Sets experience gained status
         this.expLbl = new JLabel("  Exp. Gained: 0", JLabel.LEFT);
@@ -69,7 +69,7 @@ public class MainView {
         this.expLbl.setBackground(new Color(0xDDB88A));
         this.expLbl.setOpaque(true);
         this.expLbl.setBorder(border);
-        this.expLbl.setBounds(20, 80, 270, 50);
+        this.expLbl.setBounds(20, 75, 270, 50);
 
         // Sets number of days passed
         this.daysLbl = new JLabel("Days Passed: 1  ", JLabel.RIGHT);
@@ -101,12 +101,12 @@ public class MainView {
         this.coinsLbl.setBackground(new Color(0xDDB88A));
         this.coinsLbl.setOpaque(true);
         this.coinsLbl.setBorder(border);
-        this.coinsLbl.setBounds(990, 80, 270, 50);
+        this.coinsLbl.setBounds(990, 75, 270, 50);
 
         // Sets panel for tiles
         this.farmPanel = new JPanel();
         this.farmPanel.setBackground(new Color(0xE9D5AF));
-        this.farmPanel.setBounds(240, 220, 800, 400);
+        this.farmPanel.setBounds(240, 230, 800, 400);
         GridLayout farmLayout = new GridLayout(5, 10);
         this.farmPanel.setLayout(farmLayout);
 
@@ -142,7 +142,7 @@ public class MainView {
         // Sets the tool panel
         this.toolPanel = new JPanel();
         this.toolPanel.setBackground(new Color(0xE9D5AF));
-        this.toolPanel.setBounds(430, 670, 500, 80);
+        this.toolPanel.setBounds(385, 670, 500, 80);
         GridLayout toolLayout = new GridLayout(1, 1,10,0);
         this.toolPanel.setLayout(toolLayout);
 
@@ -168,13 +168,12 @@ public class MainView {
         this.mainFrame.add(this.menuPanel);
         this.mainFrame.add(this.feedbackLbl);
         this.mainFrame.add(this.toolPanel);
-        this.mainFrame.add(this.background);
+        this.mainFrame.add(this.bgLbl);
 
         this.mainFrame.setVisible(true);
     }
 
     public void setSleepBtnListener(ActionListener actionListener) {
-
         this.sleepBtn.addActionListener(actionListener);
     }
 
