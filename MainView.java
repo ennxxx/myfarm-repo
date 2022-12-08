@@ -6,8 +6,8 @@ import java.io.InputStream;
 
 public class MainView {
     private JFrame mainFrame;
-    private JLabel farmerLbl, levelLbl, expLbl, daysLbl, coinsLbl;
-    private JLabel bgLbl, feedbackLbl;
+    private JLabel bgLbl, farmerLbl, feedbackLbl;
+    private JLabel levelLbl, typeLbl, expLbl, daysLbl, coinsLbl;
     private JPanel farmPanel, menuPanel, toolPanel;
     private JButton sleepBtn, plantBtn, lvlBtn, exitBtn;
     private JButton plowBtn, waterBtn, fertilizerBtn, pickaxeBtn, shovelBtn;
@@ -43,33 +43,41 @@ public class MainView {
         this.farmerLbl.setIcon(farmerIcon);
         this.farmerLbl.setBounds(565,50, 160, 160);
 
-        // Sets farmer level status
-        this.levelLbl = new JLabel("Farmer | Lvl. 0");
+        // Sets farmer rank
+        this.typeLbl = new JLabel("Distinguished Farmer");
+        this.typeLbl.setForeground(new Color(0x96584F));
+        this.typeLbl.setBounds(45, 26, 380, 50);
+
+        try {
+            InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            typeLbl.setFont(font.deriveFont(Font.PLAIN, 19f));
+        }
+        catch(Exception e){}
+
+        // Sets farmer level
+        this.levelLbl = new JLabel("Lvl. 11");
         this.levelLbl.setForeground(new Color(0x96584F));
-        this.levelLbl.setBounds(45, 26, 380, 50);
+        this.levelLbl.setBounds(320, 26, 380, 50);
 
         try {
             InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            levelLbl.setFont(font.deriveFont(Font.PLAIN, 21f));
+            levelLbl.setFont(font.deriveFont(Font.PLAIN, 19f));
         }
         catch(Exception e){}
 
-        // Sets experience gained status
-        this.expLbl = new JLabel("  Exp. Gained: 0", JLabel.LEFT);
-        this.expLbl.setForeground(new Color(0xF5F8ED));
+        // Sets experience gained
+        this.expLbl = new JLabel("Exp. Gained: 69");
+        this.expLbl.setForeground(new Color(0x96584F));
+        this.expLbl.setBounds(45, 86, 270, 50);
 
         try {
             InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            expLbl.setFont(font.deriveFont(Font.PLAIN, 21f));
+            expLbl.setFont(font.deriveFont(Font.PLAIN, 19f));
         }
         catch(Exception e){}
-
-        this.expLbl.setBackground(new Color(0xDDB88A));
-        this.expLbl.setOpaque(true);
-        this.expLbl.setBorder(border);
-        this.expLbl.setBounds(20, 75, 270, 50);
 
         // Sets number of days passed
         this.daysLbl = new JLabel("Days Passed: 1  ", JLabel.RIGHT);
@@ -160,6 +168,7 @@ public class MainView {
 
         // Places components in the frame
         this.mainFrame.add(this.farmerLbl);
+        this.mainFrame.add(this.typeLbl);
         this.mainFrame.add(this.levelLbl);
         this.mainFrame.add(this.expLbl);
         this.mainFrame.add(this.daysLbl);
