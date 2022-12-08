@@ -17,9 +17,6 @@ public class FarmerView extends JPanel {
         // Places farmer sprite
         this.farmerLbl = new JLabel();
         ImageIcon farmerIcon = new ImageIcon("assets/farm/farmer.png");
-        Image farmer = farmerIcon.getImage();
-        Image newFarmer = farmer.getScaledInstance(160,160,Image.SCALE_SMOOTH);
-        farmerIcon = new ImageIcon(newFarmer);
         this.farmerLbl.setIcon(farmerIcon);
         this.farmerLbl.setBounds(565,50, 160, 160);
 
