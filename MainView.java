@@ -1,21 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.Border;
-import java.awt.event.ActionListener;
 import java.io.InputStream;
 
 public class MainView {
+
+    ToolView toolView = new ToolView();
+    TileView tileView = new TileView();
+    FarmerView farmerView = new FarmerView();
+
     private JFrame mainFrame;
-    private JLabel bgLbl, farmerLbl, feedbackLbl;
-    private JLabel levelLbl, typeLbl, expLbl, daysLbl, coinsLbl;
-    private JPanel farmPanel, menuPanel, toolPanel;
+    private JLabel bgLbl, feedbackLbl;
+    private JPanel menuPanel;
     private JButton sleepBtn, plantBtn, lvlBtn, exitBtn;
-    private JButton plowBtn, waterBtn, fertilizerBtn, pickaxeBtn, shovelBtn;
 
     public MainView() {
-
-        ImageIcon logo = new ImageIcon("assets/logo.png");
-        Border border = BorderFactory.createLineBorder(new Color(0xC27D63), 4);
 
         // Initializes the frame
         this.mainFrame = new JFrame("MyFarm");
@@ -23,111 +22,25 @@ public class MainView {
         this.mainFrame.setResizable(false);
         this.mainFrame.setSize(1280, 800);
         this.mainFrame.setLayout(null);
+
+        ImageIcon logo = new ImageIcon("assets/farm/logo.png");
         this.mainFrame.setIconImage(logo.getImage());
 
         // Places background
         this.bgLbl = new JLabel();
-        ImageIcon bgIcon = new ImageIcon("assets/farm.png");
+        ImageIcon bgIcon = new ImageIcon("assets/farm/farm.png");
         Image bg = bgIcon.getImage();
         Image newBg = bg.getScaledInstance(1280, 800,  Image.SCALE_SMOOTH);
         bgIcon = new ImageIcon(newBg);
         this.bgLbl.setIcon(bgIcon);
         this.bgLbl.setBounds(0, 0, 1280, 800);
 
-        // Places farmer sprite
-        this.farmerLbl = new JLabel();
-        ImageIcon farmerIcon = new ImageIcon("assets/farmer.png");
-        Image farmer = farmerIcon.getImage();
-        Image farmerBg = farmer.getScaledInstance(160, 160,  Image.SCALE_SMOOTH);
-        farmerIcon = new ImageIcon(farmerBg);
-        this.farmerLbl.setIcon(farmerIcon);
-        this.farmerLbl.setBounds(565,50, 160, 160);
-
-        // Sets farmer rank
-        this.typeLbl = new JLabel("Distinguished Farmer");
-        this.typeLbl.setForeground(new Color(0x96584F));
-        this.typeLbl.setBounds(45, 26, 380, 50);
-
-        try {
-            InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            typeLbl.setFont(font.deriveFont(Font.PLAIN, 19f));
-        }
-        catch(Exception e){}
-
-        // Sets farmer level
-        this.levelLbl = new JLabel("Lvl. 11");
-        this.levelLbl.setForeground(new Color(0x96584F));
-        this.levelLbl.setBounds(320, 26, 380, 50);
-
-        try {
-            InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            levelLbl.setFont(font.deriveFont(Font.PLAIN, 19f));
-        }
-        catch(Exception e){}
-
-        // Sets experience gained
-        this.expLbl = new JLabel("Exp. Gained: 69");
-        this.expLbl.setForeground(new Color(0x96584F));
-        this.expLbl.setBounds(45, 86, 270, 50);
-
-        try {
-            InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            expLbl.setFont(font.deriveFont(Font.PLAIN, 19f));
-        }
-        catch(Exception e){}
-
-        // Sets number of days passed
-        this.daysLbl = new JLabel("Days Passed: 1  ", JLabel.RIGHT);
-        this.daysLbl.setForeground(new Color(0x96584F));
-
-        try {
-            InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            daysLbl.setFont(font.deriveFont(Font.PLAIN, 21f));
-        }
-        catch(Exception e){}
-
-        this.daysLbl.setBackground(new Color(0xFBE6DB));
-        this.daysLbl.setOpaque(true);
-        this.daysLbl.setBorder(border);
-        this.daysLbl.setBounds(880, 20, 380, 50);
-
-        // Sets Objectcoins of the Farmer
-        this.coinsLbl = new JLabel("Objectcoins: 0  ", JLabel.RIGHT);
-        this.coinsLbl.setForeground(new Color(0xF5F8ED));
-
-        try {
-            InputStream is = MainView.class.getResourceAsStream("assets/Minecraft.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            coinsLbl.setFont(font.deriveFont(Font.PLAIN, 21f));
-        }
-        catch(Exception e){}
-
-        this.coinsLbl.setBackground(new Color(0xDDB88A));
-        this.coinsLbl.setOpaque(true);
-        this.coinsLbl.setBorder(border);
-        this.coinsLbl.setBounds(990, 75, 270, 50);
-
-        // Sets panel for tiles
-        this.farmPanel = new JPanel();
-        this.farmPanel.setBackground(new Color(0xE9D5AF));
-        this.farmPanel.setBounds(240, 230, 800, 400);
-        GridLayout farmLayout = new GridLayout(5, 10);
-        this.farmPanel.setLayout(farmLayout);
-
-        for (int i = 0; i < (10*5); i++) {
-            farmPanel.add(new JButton("Tile"));
-        }
-
         // Sets panel for menu buttons
         this.menuPanel = new JPanel();
-        this.menuPanel.setBackground(new Color(0xE9D5AF));
-        this.menuPanel.setBounds(20, 240, 130, 370);
-        GridLayout menuLayout = new GridLayout(4, 1,0,15);
+        this.menuPanel.setOpaque(false);
+        GridLayout menuLayout = new GridLayout(4, 1,0,10);
         this.menuPanel.setLayout(menuLayout);
+        this.menuPanel.setBounds(20, 300, 130, 230);
 
         this.sleepBtn = new JButton("Sleep");
         this.plantBtn = new JButton("Plant");
@@ -140,6 +53,7 @@ public class MainView {
         this.menuPanel.add(exitBtn);
 
         // Sets the feedback label
+        Border border = BorderFactory.createLineBorder(new Color(0xC27D63), 4);
         this.feedbackLbl = new JLabel("Feedback", JLabel.CENTER);
         this.feedbackLbl.setForeground(new Color(0x96584F));
         this.feedbackLbl.setBackground(new Color(0xFBE6DB));
@@ -147,50 +61,15 @@ public class MainView {
         this.feedbackLbl.setBorder(border);
         this.feedbackLbl.setBounds(1130, 240, 130, 370);
 
-        // Sets the tool panel
-        this.toolPanel = new JPanel();
-        this.toolPanel.setBackground(new Color(0xE9D5AF));
-        this.toolPanel.setBounds(385, 670, 500, 80);
-        GridLayout toolLayout = new GridLayout(1, 1,10,0);
-        this.toolPanel.setLayout(toolLayout);
-
-        this.plowBtn = new JButton("Plow");
-        this.waterBtn = new JButton("Water");
-        this.fertilizerBtn = new JButton("Fertilize");
-        this.pickaxeBtn = new JButton("Pickaxe");
-        this.shovelBtn = new JButton("Shovel");
-
-        this.toolPanel.add(plowBtn);
-        this.toolPanel.add(waterBtn);
-        this.toolPanel.add(fertilizerBtn);
-        this.toolPanel.add(pickaxeBtn);
-        this.toolPanel.add(shovelBtn);
-
         // Places components in the frame
-        this.mainFrame.add(this.farmerLbl);
-        this.mainFrame.add(this.typeLbl);
-        this.mainFrame.add(this.levelLbl);
-        this.mainFrame.add(this.expLbl);
-        this.mainFrame.add(this.daysLbl);
-        this.mainFrame.add(this.coinsLbl);
-        this.mainFrame.add(this.farmPanel);
+        this.mainFrame.add(toolView.getToolView());
+        this.mainFrame.add(tileView.getTileView());
+        this.mainFrame.add(farmerView.getFarmerView());
         this.mainFrame.add(this.menuPanel);
         this.mainFrame.add(this.feedbackLbl);
-        this.mainFrame.add(this.toolPanel);
         this.mainFrame.add(this.bgLbl);
 
+        // Show the main frame
         this.mainFrame.setVisible(true);
-    }
-
-    public void setSleepBtnListener(ActionListener actionListener) {
-        this.sleepBtn.addActionListener(actionListener);
-    }
-
-    public JFrame getMainFrame() {
-        return this.mainFrame;
-    }
-
-    public JButton getSleepBtn() {
-        return this.sleepBtn;
     }
 }
