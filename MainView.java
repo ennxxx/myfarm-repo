@@ -29,9 +29,6 @@ public class MainView {
         // Places background
         this.bgLbl = new JLabel();
         ImageIcon bgIcon = new ImageIcon("assets/farm/farm.png");
-        Image bg = bgIcon.getImage();
-        Image newBg = bg.getScaledInstance(1280, 800,  Image.SCALE_SMOOTH);
-        bgIcon = new ImageIcon(newBg);
         this.bgLbl.setIcon(bgIcon);
         this.bgLbl.setBounds(0, 0, 1280, 800);
 
@@ -42,10 +39,15 @@ public class MainView {
         this.menuPanel.setLayout(menuLayout);
         this.menuPanel.setBounds(20, 300, 130, 230);
 
-        this.sleepBtn = new JButton("Sleep");
-        this.plantBtn = new JButton("Plant");
-        this.lvlBtn = new JButton("Level Up");
-        this.exitBtn = new JButton("Exit");
+        Icon sleep = new ImageIcon("assets/menu/sleep.png");
+        Icon plant = new ImageIcon("assets/menu/plant.png");
+        Icon levelUp = new ImageIcon("assets/menu/levelUp.png");
+        Icon exit = new ImageIcon("assets/menu/exit.png");
+
+        this.sleepBtn = new JButton(sleep);
+        this.plantBtn = new JButton(plant);
+        this.lvlBtn = new JButton(levelUp);
+        this.exitBtn = new JButton(exit);
 
         this.menuPanel.add(sleepBtn);
         this.menuPanel.add(plantBtn);

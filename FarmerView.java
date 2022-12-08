@@ -22,31 +22,31 @@ public class FarmerView extends JPanel {
 
         // Sets farmer rank
         this.rankLbl = new JLabel("Distinguished Farmer");
-        this.rankLbl.setForeground(new Color(0x96584F));
+        this.rankLbl.setForeground(new Color(0x633828));
         this.rankLbl.setBounds(45, 26, 380, 50);
         changeFont(this.rankLbl);
 
         // Sets farmer level
         this.levelLbl = new JLabel("Lvl. 11");
-        this.levelLbl.setForeground(new Color(0x96584F));
+        this.levelLbl.setForeground(new Color(0x633828));
         this.levelLbl.setBounds(320, 26, 380, 50);
         changeFont(this.levelLbl);
 
         // Sets experience gained
         this.expLbl = new JLabel("Exp. Gained: 69");
-        this.expLbl.setForeground(new Color(0x96584F));
+        this.expLbl.setForeground(new Color(0x633828));
         this.expLbl.setBounds(45, 86, 270, 50);
         changeFont(this.expLbl);
 
         // Sets number of days passed
         this.daysLbl = new JLabel("Day 1");
-        this.daysLbl.setForeground(new Color(0x96584F));
+        this.daysLbl.setForeground(new Color(0x633828));
         this.daysLbl.setBounds(1185, 26, 380, 50);
         changeFont(this.daysLbl);
 
         // Sets Objectcoins of the Farmer
         this.coinsLbl = new JLabel("0");
-        this.coinsLbl.setForeground(new Color(0x96584F));
+        this.coinsLbl.setForeground(new Color(0x633828));
         this.coinsLbl.setBounds(1225, 86, 270, 50);
         changeFont(this.coinsLbl);
 
