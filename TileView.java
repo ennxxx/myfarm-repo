@@ -7,12 +7,14 @@ public class TileView extends JPanel {
     public TileView() {
         this.farmPanel = new JPanel();
         this.farmPanel.setOpaque(false);
-        GridLayout farmLayout = new GridLayout(5, 10,2,2);
+        GridLayout farmLayout = new GridLayout(5, 10,8,8);
         this.farmPanel.setLayout(farmLayout);
-        this.farmPanel.setBounds(240, 230, 800, 400);
+        this.farmPanel.setBounds(250, 260, 772, 382);
+
+        Icon unplowed = new ImageIcon("assets/tiles/unplowed.png");
 
         for (int i = 0; i < (10*5); i++) {
-            farmPanel.add(new JButton("Tile"));
+            farmPanel.add(new JButton(unplowed));
         }
     }
 
