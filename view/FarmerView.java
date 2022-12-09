@@ -1,5 +1,8 @@
 package view;
 
+import model.Farmer;
+import model.levels.FarmerRanking;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
@@ -8,9 +11,10 @@ public class FarmerView extends JPanel {
 
     private JPanel farmerPanel;
     private JLabel farmerLbl, levelLbl, rankLbl, expLbl, daysLbl, coinsLbl;
+    private Farmer defaultFarmer;
 
     public FarmerView() {
-
+        this.defaultFarmer = new Farmer();
         this.farmerPanel = new JPanel();
         this.farmerPanel.setLayout(null);
         this.farmerPanel.setOpaque(false);
@@ -23,31 +27,31 @@ public class FarmerView extends JPanel {
         this.farmerLbl.setBounds(565,50, 160, 160);
 
         // Sets farmer rank
-        this.rankLbl = new JLabel("Distinguished Farmer");
+        this.rankLbl = new JLabel(this.defaultFarmer.getRank().getLevelTitle());
         this.rankLbl.setForeground(new Color(0x633828));
         this.rankLbl.setBounds(45, 22, 380, 50);
         changeFont(this.rankLbl);
 
         // Sets farmer level
-        this.levelLbl = new JLabel("Lvl. 11");
+        this.levelLbl = new JLabel("Lvl. " + this.defaultFarmer.getLevel());
         this.levelLbl.setForeground(new Color(0x633828));
         this.levelLbl.setBounds(320, 22, 380, 50);
         changeFont(this.levelLbl);
 
         // Sets experience gained
-        this.expLbl = new JLabel("Exp. Gained: 69");
+        this.expLbl = new JLabel("Exp. Gained: " + this.defaultFarmer.getExp());
         this.expLbl.setForeground(new Color(0x633828));
         this.expLbl.setBounds(45, 82, 270, 50);
         changeFont(this.expLbl);
 
         // Sets number of days passed
-        this.daysLbl = new JLabel("Day 1");
+        this.daysLbl = new JLabel("Day " + this.defaultFarmer.getDays());
         this.daysLbl.setForeground(new Color(0x633828));
         this.daysLbl.setBounds(1160, 22, 380, 50);
         changeFont(this.daysLbl);
 
         // Sets Objectcoins of the Farmer
-        this.coinsLbl = new JLabel("1000");
+        this.coinsLbl = new JLabel("" + this.defaultFarmer.getObjectCoins());
         this.coinsLbl.setForeground(new Color(0x633828));
         this.coinsLbl.setBounds(1180, 81, 270, 50);
         changeFont(this.coinsLbl);
@@ -68,6 +72,16 @@ public class FarmerView extends JPanel {
             labelName.setFont(font.deriveFont(Font.PLAIN, 18f));
         }
         catch(Exception e){}
+    }
+
+    public void updateFarmerView(Farmer farmer) {
+        this.rankLbl.setText(farmer.getRank().getLevelTitle());
+        this.levelLbl.setText("Lvl. " + farmer.getLevel());
+        this.expLbl.setText("Exp. Gained: " + farmer.getExp());
+        this.daysLbl.setText("Day " + farmer.getDays());
+        this.coinsLbl.setText("" + farmer.getObjectCoins());
+        this.farmerPanel.revalidate();
+        this.farmerPanel.repaint();
     }
 
     public JPanel getFarmerView() {
