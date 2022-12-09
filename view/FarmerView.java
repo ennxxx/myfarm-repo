@@ -43,13 +43,13 @@ public class FarmerView extends JPanel {
         // Sets number of days passed
         this.daysLbl = new JLabel("Day 1");
         this.daysLbl.setForeground(new Color(0x633828));
-        this.daysLbl.setBounds(1185, 22, 380, 50);
+        this.daysLbl.setBounds(1160, 22, 380, 50);
         changeFont(this.daysLbl);
 
         // Sets Objectcoins of the Farmer
-        this.coinsLbl = new JLabel("0");
+        this.coinsLbl = new JLabel("1000");
         this.coinsLbl.setForeground(new Color(0x633828));
-        this.coinsLbl.setBounds(1225, 82, 270, 50);
+        this.coinsLbl.setBounds(1180, 81, 270, 50);
         changeFont(this.coinsLbl);
 
         // Places all labels in the panel
@@ -65,7 +65,7 @@ public class FarmerView extends JPanel {
         try {
             InputStream is = FarmerView.class.getResourceAsStream("../assets/Minecraft.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            labelName.setFont(font.deriveFont(Font.PLAIN, 19f));
+            labelName.setFont(font.deriveFont(Font.PLAIN, 18f));
         }
         catch(Exception e){}
     }

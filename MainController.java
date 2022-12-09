@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -6,8 +5,9 @@ public class MainController {
     private MainFrame mainFrame;
     private StoreFrame storeFrame;
 
-    public MainController(MainFrame mainFrame) {
+    public MainController(MainFrame mainFrame, StoreFrame storeFrame) {
         this.mainFrame = mainFrame;
+        this.storeFrame = storeFrame;
 
         // Exits the game
         this.mainFrame.setExitBtnListener(new ActionListener() {
@@ -22,8 +22,7 @@ public class MainController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == mainFrame.getPlantBtn()) {
-                    mainFrame.getMainFrame().dispose();
-                    StoreFrame storeFrame = new StoreFrame();
+                    storeFrame.getStoreFrame().setVisible(true);
                 }
             }
         });
