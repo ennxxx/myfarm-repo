@@ -1,17 +1,17 @@
 import model.CropModel;
+import model.Farmer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StoreController {
     private StoreFrame storeFrame;
-    private MainFrame mainFrame;
-    private CropModel cropModel;
+    private Farmer farmer;
 
-    public StoreController(StoreFrame storeFrame, MainFrame mainFrame, CropModel cropModel) {
-        this.mainFrame = mainFrame;
+    //TODO: integrate farmer into the store
+    public StoreController(StoreFrame storeFrame, Farmer farmer) {
         this.storeFrame = storeFrame;
-        this.cropModel = cropModel;
+        this.farmer = farmer;
 
         this.storeFrame.setReturnBtnListener(new ActionListener() {
             @Override

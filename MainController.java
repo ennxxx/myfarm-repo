@@ -1,6 +1,7 @@
 import controller.FarmPlotController;
 import controller.FarmerController;
 import controller.ToolController;
+import model.CropModel;
 import model.Farmer;
 import model.Feedback;
 import model.tiles.Tile;
@@ -22,11 +23,15 @@ public class MainController {
     private FarmPlotController farmPlotController;
     private FarmerController farmerController;
     private ToolController toolController;
+    private StoreController storeController;
     private Feedback display;
+    CropModel cropModel;
 
 
-    public MainController(MainFrame mainFrame) {
+    public MainController(MainFrame mainFrame, StoreFrame storeFrame) {
         this.mainFrame = mainFrame;
+        this.storeFrame = storeFrame;
+        this.storeController = new StoreController(storeFrame, farmer);
         this.farmerController = new FarmerController();
         this.toolController = new ToolController();
         this.farmPlotController = new FarmPlotController();
@@ -92,8 +97,7 @@ public class MainController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == mainFrame.getPlantBtn()) {
-                    mainFrame.getMainFrame().dispose();
-                    StoreFrame storeFrame = new StoreFrame();
+                    storeFrame.getStoreFrame().setVisible(true);
                 }
             }
         });
