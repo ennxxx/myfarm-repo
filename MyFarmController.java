@@ -26,7 +26,7 @@ public class MyFarmController {
     public void useToolOnTile(String toolName, Tile tile) {
         Tile newTile = this.toolController.useTool(toolName, tile);
         // TODO: update farm stats
-        this.farmerController.useTool(toolName);
+        this.farmerController.setActiveTool(toolName);
         this.farmPlotController.updateTile(newTile, tile.getX(), tile.getY());
     }
 

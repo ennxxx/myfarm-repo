@@ -12,10 +12,12 @@ public class FarmerController {
 
         Farmer farmer;
         Tool activeTool = null;
+        int currentLevel =  0;
 
     //FarmerView farmerView;
 
         public void levelUp(){
+            this.currentLevel = farmer.getLevel();
             FarmerRanking next = this.farmer.getRank().nextLevel();
 
             if(this.farmer.getLevel() >= next.getLevelRequirement() && farmer.getObjectCoins() >= next.getRegistrationFee()){
@@ -26,8 +28,19 @@ public class FarmerController {
             }
         }
 
-        public void setActiveTool(Tool tool){
+        public Feedback setActiveTool(String toolName){
+            Feedback feedback = new Feedback();
+            ToolFactory tf = new ToolFactory();
+            Tool tool = tf.create(toolName);
 
+            if(this.farmer.getObjectCoins() >= tool.getCost()){
+                feedback.setSuccess(true);
+                feedback.setPrompt("You have enough money to use " + toolName + "!");
+                this.activeTool = tool;
+            }
+
+            feedback.setPrompt("Not enough money!");
+            return feedback;
         }
 
         public Feedback plantCrop(Crop crop, Tile tile){
@@ -35,21 +48,16 @@ public class FarmerController {
 
             if(this.farmer.getObjectCoins() >= crop.getCost()){
                 this.farmer.setObjectCoins(this.farmer.getObjectCoins() - crop.getCost());
-                // TODO: plant the seed
+                //TODO: plant the seed
             }
 
             feedback.setPrompt("Not enough money!");
             return feedback;
         }
 
-        public void useTool(String toolName){
-            //TODO: fix this
-            ToolFactory tf = new ToolFactory();
-            Tool tool = tf.create(toolName);
+        public void useTool(){
+            //TODO: use the active tool on the tile
 
-            if(this.farmer.getObjectCoins() >= tool.getCost()){
-                this.farmer.setObjectCoins(this.farmer.getObjectCoins() - tool.getCost());
-                this.farmer.gainExp(tool.getExpGain());
             }
         }
 

@@ -4,8 +4,6 @@ import model.Feedback;
 import model.tiles.*;
 import model.tools.*;
 
-import java.util.Objects;
-
 public class ToolFactory implements AbstractFactory<Tool, String> {
     public Tool create (String flag) {
         return switch (flag.toLowerCase()) {
@@ -41,7 +39,7 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
 
-                    if (tile instanceof UnavailableTile && Objects.equals(((UnavailableTile) tile).getObstruction(), "withered plant")) {
+                    if (tile instanceof UnavailableTile && ((UnavailableTile) tile).getObstruction().equals("rock")) {
                         feedback.setPrompt("Mined");
                         feedback.setSuccess(true);
                     }
@@ -67,10 +65,8 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
 
-                    if ((tile instanceof UnavailableTile && Objects.equals(((UnavailableTile) tile).getObstruction(), "rock")) || (tile instanceof AvailableTile) || (tile instanceof HarvestableTile) || (tile instanceof UnavailableTile && Objects.equals(((UnavailableTile) tile).getObstruction(), "withered plant"))) {
-                        feedback.setPrompt("Dug Up");
-                        feedback.setSuccess(true);
-                    }
+                    feedback.setPrompt("Dug Up");
+                    feedback.setSuccess(true);
 
                     return feedback;
                 }

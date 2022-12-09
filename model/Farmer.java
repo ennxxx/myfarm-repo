@@ -3,22 +3,16 @@ package model;
 import model.levels.*;
 
 public class Farmer {
-    private String name;
     private double exp;
     private int level;
     private FarmerRanking rank;
     private double objectCoins;
 
-    public Farmer(String name) {
-        this.name = name;
+    public Farmer() {
         this.exp = 0;
         this.level = 0;
         this.rank = new Default();
         this.objectCoins = 100;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public double getExp() {
@@ -26,6 +20,7 @@ public class Farmer {
     }
 
     public int getLevel() {
+        this.level = (int) this.exp / 100;
         return this.level;
     }
 

@@ -1,10 +1,7 @@
 package controller;
 
 import model.Feedback;
-import model.tiles.AvailableTile;
-import model.tiles.HarvestableTile;
-import model.tiles.PlantableTile;
-import model.tiles.Tile;
+import model.tiles.*;
 import model.tools.Tool;
 
 public class ToolController {
@@ -30,7 +27,7 @@ public class ToolController {
                     return tile;
                 }
             }
-            case "pickaxe", "shovel" -> {
+            case "pickaxe" ->{
                 return new AvailableTile();
             }
             case "fertilizer" -> {
@@ -38,6 +35,13 @@ public class ToolController {
                     ((HarvestableTile) tile).getCrop().fertilize();
                     return tile;
                 }
+            }
+            case "shovel" -> {
+                if((tile instanceof UnavailableTile && ((UnavailableTile) tile).getObstruction().equals("withered plant")) || (tile instanceof HarvestableTile )) {
+                    return new AvailableTile();
+                }
+
+                return tile;
             }
 
             default -> {
