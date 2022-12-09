@@ -9,11 +9,17 @@ public class FeedbackView extends JLabel {
     public FeedbackView() {
 
         this.feedbackLbl = new JLabel();
-        this.feedbackLbl.setText("<html><center>" +
-                "This is a tester to see if the text will wrap around." + "</center></html>");
+        this.feedbackLbl.setText("<html><center>" + "Welcome Farmer!" + "</center></html>");
         this.feedbackLbl.setForeground(new Color(0x633828));
         this.feedbackLbl.setFont(new Font("Verdana", Font.PLAIN, 18));
         this.feedbackLbl.setBounds(1160, 190,85, 350);
+    }
+
+    public void updateFeedback(String display) {
+        this.feedbackLbl.setText("<html><center>" +
+                display + "</center></html>");
+        this.feedbackLbl.revalidate();
+        this.feedbackLbl.repaint();
     }
 
     public JLabel getFeedbackView() {

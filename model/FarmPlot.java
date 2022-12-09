@@ -1,5 +1,6 @@
 package model;
 
+import model.crops.Crop;
 import model.tiles.AvailableTile;
 import model.tiles.Tile;
 
@@ -13,7 +14,7 @@ public class FarmPlot {
 
     public FarmPlot(String name) {
         tiles = new Tile[5][10];
-        availableCrops = new ArrayList<Crops>();
+        availableCrops = new ArrayList<>();
         farmName = name;
 
         // init all tiles

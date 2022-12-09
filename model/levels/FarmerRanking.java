@@ -20,4 +20,8 @@ public abstract class FarmerRanking {
     public double getRegistrationFee() {
         return registrationFee;
     }
+
+    public String getLevelTitle() {
+        return levelTitle;
+    }
 }

@@ -1,11 +1,10 @@
 import controller.FarmPlotController;
 import controller.FarmerController;
 import controller.ToolController;
-import controller.ToolFactory;
 import model.tiles.Tile;
 
 public class MyFarmController {
-    private MyFarmView myfarmView;
+    private MainFrame myfarmView;
 //    private MyFarmModel myfarmModel;
 
      private FarmPlotController farmPlotController;
@@ -13,7 +12,7 @@ public class MyFarmController {
      private ToolController toolController;
 
 
-    public MyFarmController(MyFarmView myfarmView) {
+    public MyFarmController(MainFrame myfarmView) {
         this.myfarmView = myfarmView;
         // TODO: add instantiation of rock tiles through file input
         // TODO: add getTile from myfarmView

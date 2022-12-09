@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ToolView extends JPanel {
     private JPanel toolPanel;
@@ -33,15 +34,24 @@ public class ToolView extends JPanel {
         this.toolPanel.add(shovelBtn);
     }
 
-    // If plow button pressed, do action
+    public void setPlowBtnAction(ActionListener action) {
+        this.plowBtn.addActionListener(action);
+    }
+    public void setWaterBtnAction(ActionListener action) {
+        this.waterBtn.addActionListener(action);
+    }
 
-    // If water button pressed, do action
+    public void setFertilizerBtnAction(ActionListener action) {
+        this.fertilizerBtn.addActionListener(action);
+    }
 
-    // If fertilizer button pressed, do action
+    public void setPickaxeBtnAction(ActionListener action) {
+        this.pickaxeBtn.addActionListener(action);
+    }
 
-    // If pickaxe button pressed, do action
-
-    // If shovel button pressed, do action
+    public void setShovelBtnAction(ActionListener action) {
+        this.shovelBtn.addActionListener(action);
+    }
 
     public JPanel getToolView() {
         return this.toolPanel;

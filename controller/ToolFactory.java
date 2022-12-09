@@ -20,7 +20,7 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                     return feedback;
                 }
             };
-            case "wateringcan" -> new WateringCan(){
+            case "watering can" -> new WateringCan(){
                 @Override
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();

@@ -7,12 +7,14 @@ public class Farmer {
     private int level;
     private FarmerRanking rank;
     private double objectCoins;
+    private int days;
 
     public Farmer() {
         this.exp = 0;
         this.level = 0;
         this.rank = new Default();
         this.objectCoins = 100;
+        this.days = 1;
     }
 
     public double getExp() {
@@ -46,5 +48,13 @@ public class Farmer {
 
     public void setObjectCoins(double objectCoins) {
         this.objectCoins = objectCoins;
+    }
+
+    public int getDays() {
+        return this.days;
+    }
+
+    public void advanceDay() {
+        this.days++;
     }
 }

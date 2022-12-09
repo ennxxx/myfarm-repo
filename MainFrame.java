@@ -1,3 +1,4 @@
+import model.Farmer;
 import view.FarmerView;
 import view.FeedbackView;
 import view.TileView;
@@ -6,9 +7,9 @@ import view.ToolView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class MainFrame {
-
     ToolView toolView = new ToolView();
     TileView tileView = new TileView();
     FarmerView farmerView = new FarmerView();
@@ -60,6 +61,7 @@ public class MainFrame {
         this.menuPanel.add(exitBtn);
 
         // Places components in the frame
+
         this.mainFrame.add(toolView.getToolView());
         this.mainFrame.add(tileView.getTileView());
         this.mainFrame.add(farmerView.getFarmerView());
@@ -79,6 +81,10 @@ public class MainFrame {
         this.plantBtn.addActionListener(actionListener);
     }
 
+    public void setSleepBtnListener(ActionListener actionListener) {
+        this.sleepBtn.addActionListener(actionListener);
+    }
+
     public JFrame getMainFrame() {
         return this.mainFrame;
     }
@@ -86,4 +92,15 @@ public class MainFrame {
         return this.plantBtn;
     }
 
+    public ToolView getToolView() {
+        return this.toolView;
+    }
+
+    public FeedbackView getFeedbackView() {
+        return this.feedbackView;
+    }
+
+    public FarmerView getFarmerView() {
+        return this.farmerView;
+    }
 }

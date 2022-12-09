@@ -6,17 +6,21 @@ import model.crops.Crop;
 import model.levels.*;
 import model.tiles.Tile;
 import model.tools.Tool;
-//import view.FarmerView;
+import view.FarmerView;
 
 public class FarmerController {
 
         Farmer farmer;
         Tool activeTool = null;
-        int currentLevel =  0;
+        int currentLevel;
 
-    //FarmerView farmerView;
+        public FarmerController() {
+                this.farmer = new Farmer();
+                this.currentLevel = farmer.getLevel();
+        }
 
         public void levelUp(){
+            //TODO: implement level up feedback
             this.currentLevel = farmer.getLevel();
             FarmerRanking next = this.farmer.getRank().nextLevel();
 
@@ -33,15 +37,34 @@ public class FarmerController {
             ToolFactory tf = new ToolFactory();
             Tool tool = tf.create(toolName);
 
+            //TODO: implement equipped tool better, don't remove money unless a tile is clicked
             if(this.farmer.getObjectCoins() >= tool.getCost()){
                 feedback.setSuccess(true);
-                feedback.setPrompt("You have enough money to use " + toolName + "!");
+                feedback.setPrompt("You are currently using the " + toolName + "!");
                 this.activeTool = tool;
+                return feedback;
             }
 
-            feedback.setPrompt("Not enough money!");
+            feedback.setPrompt("Not enough money to use " + toolName + "!");
             return feedback;
         }
+
+//        public Feedback useActiveTool(Tile tile){
+//            Feedback feedback = new Feedback();
+//            if(this.activeTool != null){
+//                if(this.farmer.getObjectCoins() >= this.activeTool.getCost()){
+//                    this.farmer.setObjectCoins(this.farmer.getObjectCoins() - this.activeTool.getCost());
+//                    feedback.setSuccess(true);
+//                    feedback.setPrompt("You used the " + this.activeTool.getName() + "!");
+//                    this.activeTool.use(tile);
+//                    return feedback;
+//                }
+//                feedback.setPrompt("Not enough money to use " + this.activeTool.getName() + "!");
+//                return feedback;
+//            }
+//            feedback.setPrompt("No tool is currently equipped!");
+//            return feedback;
+//        }
 
         public Feedback plantCrop(Crop crop, Tile tile){
             Feedback feedback = new Feedback();
@@ -55,13 +78,13 @@ public class FarmerController {
             return feedback;
         }
 
-        public void useTool(){
-            //TODO: use the active tool on the tile
-
-            }
-        }
-
-        public void harvestCrop(){
-            //TODO: Implement harvest crop
-        }
+//        public void useTool(){
+//            //TODO: use the active tool on the tile
+//
+//            }
+//        }
+//
+//        public void harvestCrop(){
+//            //TODO: Implement harvest crop
+//        }
 }
