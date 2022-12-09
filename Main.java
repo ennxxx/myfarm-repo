@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        MainView mainView = new MainView();
+
+        MainFrame mainFrame = new MainFrame();
+        MainController mainController = new MainController(mainFrame);
     }
 }

@@ -1,9 +1,13 @@
+import view.FarmerView;
+import view.FeedbackView;
+import view.TileView;
+import view.ToolView;
+
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.Border;
-import java.io.InputStream;
+import java.awt.event.ActionListener;
 
-public class MainView {
+public class MainFrame {
 
     ToolView toolView = new ToolView();
     TileView tileView = new TileView();
@@ -15,10 +19,10 @@ public class MainView {
     private JPanel menuPanel;
     private JButton sleepBtn, plantBtn, lvlBtn, exitBtn;
 
-    public MainView() {
+    public MainFrame() {
 
         // Initializes the frame
-        this.mainFrame = new JFrame("MyFarm");
+        this.mainFrame = new JFrame("My Farm");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setResizable(false);
         this.mainFrame.setSize(1280, 800);
@@ -66,4 +70,20 @@ public class MainView {
         // Show the main frame
         this.mainFrame.setVisible(true);
     }
+
+    public void setExitBtnListener(ActionListener actionListener) {
+        this.exitBtn.addActionListener(actionListener);
+    }
+
+    public void setPlantBtnListener(ActionListener actionListener) {
+        this.plantBtn.addActionListener(actionListener);
+    }
+
+    public JFrame getMainFrame() {
+        return this.mainFrame;
+    }
+    public JButton getPlantBtn() {
+        return this.plantBtn;
+    }
+
 }

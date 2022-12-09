@@ -1,3 +1,5 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
@@ -61,7 +63,7 @@ public class FarmerView extends JPanel {
 
     public void changeFont(JLabel labelName) {
         try {
-            InputStream is = FarmerView.class.getResourceAsStream("assets/Minecraft.ttf");
+            InputStream is = FarmerView.class.getResourceAsStream("../assets/Minecraft.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             labelName.setFont(font.deriveFont(Font.PLAIN, 19f));
         }
