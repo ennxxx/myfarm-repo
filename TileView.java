@@ -11,14 +11,27 @@ public class TileView extends JPanel {
         this.farmPanel.setLayout(farmLayout);
         this.farmPanel.setBounds(250, 260, 772, 382);
 
+        // Sets all tiles as unplowed
         Icon unplowed = new ImageIcon("assets/tiles/unplowed.png");
 
         for (int i = 0; i < (10*5); i++) {
-            farmPanel.add(new JButton(unplowed));
+            this.farmPanel.add(new JButton(unplowed));
         }
     }
 
+    // Randomly generated rocks
+
+    // If plowed, update view
+
+    // If planted, update view
+
+    // If watered, update view
+
+    // If harvestable, update view
+
+    // If withered, update view
+
     public JPanel getTileView() {
-        return farmPanel;
+        return this.farmPanel;
     }
 }

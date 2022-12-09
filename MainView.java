@@ -8,9 +8,10 @@ public class MainView {
     ToolView toolView = new ToolView();
     TileView tileView = new TileView();
     FarmerView farmerView = new FarmerView();
+    FeedbackView feedbackView = new FeedbackView();
 
     private JFrame mainFrame;
-    private JLabel bgLbl, feedbackLbl;
+    private JLabel bgLbl;
     private JPanel menuPanel;
     private JButton sleepBtn, plantBtn, lvlBtn, exitBtn;
 
@@ -54,21 +55,12 @@ public class MainView {
         this.menuPanel.add(lvlBtn);
         this.menuPanel.add(exitBtn);
 
-        // Sets the feedback label
-        Border border = BorderFactory.createLineBorder(new Color(0xC27D63), 4);
-        this.feedbackLbl = new JLabel("Feedback", JLabel.CENTER);
-        this.feedbackLbl.setForeground(new Color(0x96584F));
-        this.feedbackLbl.setBackground(new Color(0xFBE6DB));
-        this.feedbackLbl.setOpaque(true);
-        this.feedbackLbl.setBorder(border);
-        this.feedbackLbl.setBounds(1130, 240, 130, 370);
-
         // Places components in the frame
         this.mainFrame.add(toolView.getToolView());
         this.mainFrame.add(tileView.getTileView());
         this.mainFrame.add(farmerView.getFarmerView());
+        this.mainFrame.add(feedbackView.getFeedbackView());
         this.mainFrame.add(this.menuPanel);
-        this.mainFrame.add(this.feedbackLbl);
         this.mainFrame.add(this.bgLbl);
 
         // Show the main frame

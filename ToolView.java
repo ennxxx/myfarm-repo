@@ -31,7 +31,17 @@ public class ToolView extends JPanel {
         this.toolPanel.add(shovelBtn);
     }
 
+    // If plow button pressed, do action
+
+    // If water button pressed, do action
+
+    // If fertilizer button pressed, do action
+
+    // If pickaxe button pressed, do action
+
+    // If shovel button pressed, do action
+
     public JPanel getToolView() {
-        return toolPanel;
+        return this.toolPanel;
     }
 }
