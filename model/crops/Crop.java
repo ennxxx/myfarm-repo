@@ -104,4 +104,8 @@ public abstract class Crop {
     public void fertilize() {
         timesFertilized++;
     }
+
+    public boolean isWatered() {
+        return timesWatered >= waterNeeds;
+    }
 }

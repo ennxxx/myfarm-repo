@@ -9,7 +9,7 @@ public class FarmPlotController {
 //    private FarmPlotView farmPlotView;
 
     public FarmPlotController() {
-        this.farmPlot = new FarmPlot("My Farm");
+        this.farmPlot = new FarmPlot();
 
     }
 

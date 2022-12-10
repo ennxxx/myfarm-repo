@@ -80,6 +80,7 @@ public class StoreController {
     }
 
     public String setInformation(String seedName) {
+        // TODO: add crop initialization here
 
         CropModel cropModel = new CropModel(seedName);
 

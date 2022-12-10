@@ -103,4 +103,8 @@ public class MainFrame {
     public FarmerView getFarmerView() {
         return this.farmerView;
     }
+
+    public TileView getTileView() {
+        return this.tileView;
+    }
 }

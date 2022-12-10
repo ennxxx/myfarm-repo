@@ -16,7 +16,7 @@ public class StoreFrame {
 
         // Initializes the frame
         this.storeFrame = new JFrame("Seed Store");
-        this.storeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.storeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.storeFrame.setResizable(false);
         this.storeFrame.setSize(500, 650);
         this.storeFrame.setLayout(null);

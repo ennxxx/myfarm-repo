@@ -1,16 +1,17 @@
 import controller.FarmPlotController;
 import controller.FarmerController;
+import controller.TileController;
 import controller.ToolController;
 import model.CropModel;
+import model.FarmPlot;
 import model.Farmer;
 import model.Feedback;
 import model.tiles.Tile;
 import view.FarmerView;
 import view.FeedbackView;
+import view.TileView;
 import view.ToolView;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class MainController {
@@ -20,25 +21,39 @@ public class MainController {
     private ToolView toolView;
     private FarmerView farmerView;
     private FeedbackView feedbackView;
+    private TileView tileView;
+    private TileController tileController;
     private FarmPlotController farmPlotController;
     private FarmerController farmerController;
     private ToolController toolController;
     private StoreController storeController;
     private Feedback display;
+    private FarmPlot farmPlot;
     CropModel cropModel;
 
 
     public MainController(MainFrame mainFrame, StoreFrame storeFrame) {
+        // instantiate frames
         this.mainFrame = mainFrame;
         this.storeFrame = storeFrame;
+
+        // instantiate models
+        this.farmer = new Farmer();
+        this.farmPlot = new FarmPlot();
+
+        // instantiate views
+        this.toolView = mainFrame.getToolView();
+        this.feedbackView = mainFrame.getFeedbackView();
+        this.farmerView = mainFrame.getFarmerView();
+        this.tileView = mainFrame.getTileView();
+
+        // instantiate controllers
         this.storeController = new StoreController(storeFrame, farmer);
         this.farmerController = new FarmerController();
         this.toolController = new ToolController();
         this.farmPlotController = new FarmPlotController();
-        this.toolView = mainFrame.getToolView();
-        this.feedbackView = mainFrame.getFeedbackView();
-        this.farmer = new Farmer();
-        this.farmerView = mainFrame.getFarmerView();
+        this.tileController = new TileController(farmPlot.getTiles(),tileView, farmPlot.getHeight(), farmPlot.getWidth());
+        this.tileController.clickListener(this.tileView);
 
         // TODO: add instantiation of rock tiles through file input
         // TODO: add getTile from myfarmView
@@ -129,4 +144,5 @@ public class MainController {
         // TODO: update farm stats
         this.farmPlotController.updateTile(newTile, tile.getX(), tile.getY());
     }
+
 }
