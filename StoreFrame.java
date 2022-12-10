@@ -7,10 +7,10 @@ import java.io.InputStream;
 
 public class StoreFrame {
     private JFrame storeFrame;
-    private JPanel seedPanel;
+    private JPanel menuPanel, seedPanel;
     private JLabel bgLbl, coinsLbl, feedbackLbl;
     private JButton turBtn, carBtn, potBtn, rosBtn, tulBtn, sunBtn, manBtn, appBtn;
-    private JButton returnBtn;
+    private JButton buyBtn, returnBtn;
 
     //TODO: integrate farmer into the view and add update view method
     public StoreFrame() {
@@ -41,11 +41,28 @@ public class StoreFrame {
         this.feedbackLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
         this.feedbackLbl.setBounds(51,285,100,160);
 
-        // Set panel for menu buttons
-        this.returnBtn = new JButton();
+        // Set return button
+        // (If return button only, make sure to add this.storeFrame.add(returnBtn))
+        // this.returnBtn = new JButton();
+        // Icon rtn = new ImageIcon("assets/seedStore/return.png");
+        // this.returnBtn = new JButton(rtn);
+        // this.returnBtn.setBounds(20,470,160,62);
+
+        // Set menu panel
+        this.menuPanel = new JPanel();
+        this.menuPanel.setOpaque(false);
+        GridLayout menuLayout = new GridLayout(2,1,0,10);
+        this.menuPanel.setLayout(menuLayout);
+        this.menuPanel.setBounds(20,465,160,134);
+
+        Icon buy = new ImageIcon("assets/seedStore/buy.png");
         Icon rtn = new ImageIcon("assets/seedStore/return.png");
+
+        this.buyBtn = new JButton(buy);
         this.returnBtn = new JButton(rtn);
-        this.returnBtn.setBounds(20,470,160,62);
+
+        this.menuPanel.add(buyBtn);
+        this.menuPanel.add(returnBtn);
 
         // Set panel for seeds
         this.seedPanel = new JPanel();
@@ -95,7 +112,7 @@ public class StoreFrame {
         // Places components in the frame
         this.storeFrame.add(this.coinsLbl);
         this.storeFrame.add(this.feedbackLbl);
-        this.storeFrame.add(this.returnBtn);
+        this.storeFrame.add(this.menuPanel);
         this.storeFrame.add(this.seedPanel);
         this.storeFrame.add(this.bgLbl);
 
