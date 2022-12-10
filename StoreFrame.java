@@ -12,7 +12,6 @@ public class StoreFrame {
     private JButton turBtn, carBtn, potBtn, rosBtn, tulBtn, sunBtn, manBtn, appBtn;
     private JButton buyBtn, returnBtn;
 
-    //TODO: integrate farmer into the view and add update view method
     public StoreFrame() {
 
         // Initializes the frame
