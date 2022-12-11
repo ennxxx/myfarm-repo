@@ -232,8 +232,16 @@ public class MainController {
 
     private void harvestCrop(Tile activeTile, JButton activeTileView) {
 
+        // guard clause for harvesting
+        if(activeTile instanceof HarvestableTile){
+            if(!((HarvestableTile) activeTile).getCrop().isReady()){
+                feedbackView.updateFeedback("Crop is not ready to be harvested");
+                return;
+            }
+        }
+
         // harvest the crop on the farmer's currentTile
-        if(farmerController.getFarmer().getActiveTile() instanceof HarvestableTile){
+        if(activeTile instanceof HarvestableTile){
             // get the crop from the tile
             Crop harvestedCrop = ((HarvestableTile) activeTile).getCrop();
 
