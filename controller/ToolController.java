@@ -20,7 +20,9 @@ public class ToolController {
 
         switch (toolName.toLowerCase()) {
             case "plow" -> {
-                return new PlantableTile();
+                if(tile instanceof AvailableTile){
+                    return new PlantableTile();
+                }
             }
             case "watering can" -> {
                 if(tile instanceof HarvestableTile) {
@@ -30,7 +32,11 @@ public class ToolController {
                 }
             }
             case "pickaxe" ->{
-                return new AvailableTile();
+                if(tile instanceof UnavailableTile){
+                    if(((UnavailableTile) tile).getObstruction().equals("rock")){
+                        return new AvailableTile();
+                    }
+                }
             }
             case "fertilizer" -> {
                 if(tile instanceof HarvestableTile) {
