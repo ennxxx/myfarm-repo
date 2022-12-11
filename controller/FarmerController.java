@@ -66,22 +66,23 @@ public class FarmerController {
         return feedback;
     }
 
-//        public Feedback useActiveTool(Tile tile){
-//            Feedback feedback = new Feedback();
-//            if(this.activeTool != null){
-//                if(this.farmer.getObjectCoins() >= this.activeTool.getCost()){
-//                    this.farmer.setObjectCoins(this.farmer.getObjectCoins() - this.activeTool.getCost());
-//                    feedback.setSuccess(true);
-//                    feedback.setPrompt("You used the " + this.activeTool.getName() + "!");
-//                    this.activeTool.use(tile);
-//                    return feedback;
-//                }
-//                feedback.setPrompt("Not enough money to use " + this.activeTool.getName() + "!");
-//                return feedback;
-//            }
-//            feedback.setPrompt("No tool is currently equipped!");
-//            return feedback;
-//        }
+        public Feedback useActiveTool(Tile tile){
+            Feedback feedback = new Feedback();
+
+            if(this.activeTool != null){
+                if(this.farmer.getObjectCoins() >= this.activeTool.getCost()){
+                    this.farmer.setObjectCoins(this.farmer.getObjectCoins() - this.activeTool.getCost());
+                    this.farmer.gainExp(this.activeTool.getExpGain());
+                    feedback.setSuccess(true);
+                    feedback.setPrompt("You used the " + this.activeTool.getName() + "!");
+                    this.activeTool.use(tile);
+                    return feedback;
+                }
+                return feedback;
+            }
+
+            return feedback;
+        }
 
     public Feedback plantCrop(Crop crop, Tile tile) {
         Feedback feedback = new Feedback();
@@ -94,6 +95,11 @@ public class FarmerController {
         feedback.setPrompt("Not enough money!");
         return feedback;
     }
+
+    public Tool getActiveTool() {
+        return this.activeTool;
+    }
+
 
 //        public void useTool(){
 //            //TODO: use the active tool on the tile

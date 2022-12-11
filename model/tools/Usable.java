@@ -7,4 +7,5 @@ public interface Usable {
     default Feedback use(Tile tile){
         return new Feedback();
     }
+
 }

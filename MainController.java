@@ -12,6 +12,7 @@ import view.FeedbackView;
 import view.TileView;
 import view.ToolView;
 
+import javax.swing.*;
 import java.awt.event.*;
 
 public class MainController {
@@ -29,7 +30,7 @@ public class MainController {
     private StoreController storeController;
     private Feedback display;
     private FarmPlot farmPlot;
-    CropModel cropModel;
+    private Tile lastClicked;
 
 
     public MainController(MainFrame mainFrame, StoreFrame storeFrame) {
@@ -53,8 +54,9 @@ public class MainController {
         this.toolController = new ToolController();
         this.farmPlotController = new FarmPlotController();
         this.tileController = new TileController(farmPlot.getTiles(),tileView, farmPlot.getHeight(), farmPlot.getWidth());
-        this.tileController.clickListener(this.tileView);
+        this.tileController.clickListener();
 
+        this.lastClicked = null;
         // TODO: add instantiation of rock tiles through file input
         // TODO: add getTile from myfarmView
 
@@ -126,6 +128,27 @@ public class MainController {
                     farmerView.updateFarmerView(farmer);
             }
         });
+
+        this.tileView.setTileBtnAction(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    lastClicked = tileController.getClickedTile();
+
+                    JButton clickedBtn = (JButton) e.getSource();
+
+                    if (lastClicked != null) {
+                        display = useToolOnTile(farmerController.getActiveTool().getName(), lastClicked);
+                        feedbackView.updateFeedback(display.getPrompt());
+                        farmerView.updateFarmerView(farmer);
+
+                        clickedBtn = (JButton) e.getSource();
+                        tileView.updateTileView(lastClicked, clickedBtn);
+
+                        tileController.updateTileViewIndex();
+                        tileController.updateFarmPanel();
+                    }
+            }
+        });
     }
 
     //TODO: update this to accommodate the growing of crops
@@ -139,10 +162,25 @@ public class MainController {
         return feedback;
     }
 
-    public void useToolOnTile(String toolName, Tile tile) {
-        Tile newTile = this.toolController.useTool(toolName, tile);
-        // TODO: update farm stats
-        this.farmPlotController.updateTile(newTile, tile.getX(), tile.getY());
+    public Feedback useToolOnTile(String toolName, Tile tile) {
+        Feedback feedback = new Feedback();
+            Tile newTile = this.toolController.useTool(toolName, tile);
+            this.tileController.updateTile(tile.getX(), tile.getY(), newTile);
+            this.tileController.updateTileViewIndex();
+            this.tileController.updateFarmPanel();
+            // TODO: update farm stats
+
+            feedback.setSuccess(true);
+            feedback.setPrompt("You used " + toolName + " on a tile!");
+
+            return feedback;
+    }
+
+    public Feedback printTileStatus(Tile tile){
+        Feedback feedback = new Feedback();
+        feedback.setPrompt("Tile Details: " + tileController.getTileType(tile));
+        feedback.setSuccess(true);
+        return feedback;
     }
 
 }

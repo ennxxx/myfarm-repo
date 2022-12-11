@@ -2,11 +2,12 @@ package controller;
 
 import model.FarmPlot;
 import model.tiles.Tile;
+import view.TileView;
 
 public class FarmPlotController {
 
     private FarmPlot farmPlot;
-//    private FarmPlotView farmPlotView;
+    private TileView farmPlotView;
 
     public FarmPlotController() {
         this.farmPlot = new FarmPlot();

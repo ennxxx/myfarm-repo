@@ -1,3 +1,4 @@
+import controller.TileController;
 import model.Farmer;
 import view.FarmerView;
 import view.FeedbackView;
@@ -63,7 +64,7 @@ public class MainFrame {
         // Places components in the frame
 
         this.mainFrame.add(toolView.getToolView());
-        this.mainFrame.add(tileView.getTileView());
+        this.mainFrame.add(tileView.getFarmPanel());
         this.mainFrame.add(farmerView.getFarmerView());
         this.mainFrame.add(feedbackView.getFeedbackView());
         this.mainFrame.add(this.menuPanel);

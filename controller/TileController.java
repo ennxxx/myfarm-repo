@@ -1,58 +1,103 @@
 package controller;
 
-import model.tiles.Tile;
+import model.tiles.*;
 import view.TileView;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class TileController {
     private Tile[][] tiles;
+    private Tile clickedTile;
+
     int height;
     int width;
-
-    private FarmerController farmerController;
+    private TileView tileView;
 
     public TileController(Tile[][] tiles, TileView tileView, int height, int width) {
         this.tiles = tiles;
         this.height = height;
         this.width = width;
-        this.farmerController = farmerController;
+        this.tileView = tileView;
+        this.clickedTile = null;
+
     }
 
 
-    public void clickListener(TileView tileView) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 10; j++) {
-                tileView.getTileView().getComponent(i * 10 + j).addMouseListener(new MouseAdapter() {
+
+    public void updateTileViewIndex(){
+
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 5; y++) {
+                this.tileView.updateTileView(
+                        this.tiles[y][x],
+                        this.tileView.getTileView()[y][x]);
+            }
+        }
+    }
+
+
+    public void updateFarmPanel(){
+
+        this.tileView.getFarmPanel().removeAll();
+        for(int y = 0; y < 5; y++) {
+            for(int x = 0; x < 10; x++) {
+
+                JButton newTileBtn = this.tileView.getTileView()[y][x];
+
+                this.tileView.getFarmPanel().add(this.tileView.getTileView()[y][x]);
+            }
+        }
+
+        this.tileView.getFarmPanel().revalidate();
+        this.tileView.getFarmPanel().repaint();
+    }
+
+    public void clickListener() {
+
+        for(int y = 0; y < 5; y++) {
+            for(int x = 0; x < 10; x++) {
+                int finalY = y;
+                int finalX = x;
+                this.tileView.getTileView()[y][x].addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        JButton button = (JButton) e.getSource();
-                        int x = button.getX();
-                        int y = button.getY();
-
-                        // get button width and height
-                        int btnWidth = button.getWidth();
-                        int btnHeight = button.getHeight();
-
-                        x = x / btnWidth;
-                        y = y / btnHeight;
-
-                        if(x > (width - 1))
-                            x = 9;
-                        if(x < 0)
-                            x = 0;
-
-                        if(y > height)
-                            y = 4;
-                        if(y < 0)
-                            y = 0;
-
-                        System.out.println("Clicked Tile: ("+ x + ", " + y + ")");
+                        clickedTile = tiles[finalY][finalX];
                     }
                 });
             }
         }
+    }
+
+    public Tile getClickedTile() {
+        return this.clickedTile;
+    }
+
+    public void updateTile(int x, int y, Tile newTile){
+        System.out.println();
+        this.tiles[y][x] = newTile;
+    }
+
+    public String getTileType(Tile tile){
+        if(tile instanceof AvailableTile){
+            return "Unplowed";
+        } if(tile instanceof PlantableTile) {
+            return "Plowed";
+        } if(tile instanceof HarvestableTile) {
+            return "Harvestable";
+            //TODO: add crop details
+        } if(tile instanceof UnavailableTile) {
+            String obstruction = ((UnavailableTile) tile).getObstruction();
+            if(obstruction.equals("rock")){
+                return "Rock";
+            } else {
+                return "Withered";
+            }
+        }
+        return "Unplowed";
     }
 }
