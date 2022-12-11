@@ -3,7 +3,6 @@ package controller;
 import model.CropModel;
 import model.Farmer;
 import model.crops.Crop;
-import model.tiles.Tile;
 import view.FeedbackView;
 import view.StoreFrame;
 

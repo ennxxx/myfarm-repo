@@ -2,7 +2,6 @@ import controller.*;
 import model.FarmPlot;
 import model.Feedback;
 import model.crops.Crop;
-import model.levels.FarmerRanking;
 import model.tiles.AvailableTile;
 import model.tiles.HarvestableTile;
 import model.tiles.PlantableTile;
@@ -11,7 +10,8 @@ import model.tools.Tool;
 import view.*;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainController {
     private MainFrame mainFrame;
@@ -180,7 +180,7 @@ public class MainController {
         this.mainFrame.setPlantBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == mainFrame.getPlantBtn()) {
+                if (e.getSource() == mainFrame.getStoreBtn()) {
                     storeFrame.getStoreFrame().setVisible(true);
                 }
             }
@@ -241,13 +241,10 @@ public class MainController {
         }
 
         // harvest the crop on the farmer's currentTile
-        if(activeTile instanceof HarvestableTile){
+        if(activeTile instanceof HarvestableTile) {
             // get the crop from the tile
             Crop harvestedCrop = ((HarvestableTile) activeTile).getCrop();
 
-            // sell the crop
-
-            // TODO: rework selling to include proper prices and bonuses
             double sellPrice = harvestedCrop.getBasePrice();
             int yield = harvestedCrop.getHarvestYield();
             farmerController.getFarmer().setObjectCoins(

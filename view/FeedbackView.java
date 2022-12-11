@@ -12,7 +12,7 @@ public class FeedbackView extends JLabel {
         this.feedbackLbl.setText("<html><center>" + "Welcome Farmer!" + "</center></html>");
         this.feedbackLbl.setForeground(new Color(0x633828));
         this.feedbackLbl.setFont(new Font("Verdana", Font.PLAIN, 16));
-        this.feedbackLbl.setBounds(1160, 190,85, 350);
+        this.feedbackLbl.setBounds(1160, 220,85, 350);
     }
 
     public void updateFeedback(String display) {

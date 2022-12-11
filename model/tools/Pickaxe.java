@@ -1,8 +1,5 @@
 package model.tools;
 
-import model.Feedback;
-import model.tiles.Tile;
-
 public class Pickaxe extends Tool {
     public Pickaxe() {
         name = "Pickaxe";

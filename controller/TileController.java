@@ -4,11 +4,8 @@ import model.tiles.*;
 import view.TileView;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class TileController {
     private Tile[][] tiles;

@@ -1,7 +1,5 @@
 package view;
 
-import view.FarmerView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

@@ -7,7 +7,6 @@ import model.levels.*;
 import model.tiles.Tile;
 import model.tools.Tool;
 import view.FarmerView;
-import view.TileView;
 
 import javax.swing.*;
 

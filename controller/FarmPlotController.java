@@ -7,8 +7,6 @@ import model.tiles.Tile;
 import model.tiles.UnavailableTile;
 import view.TileView;
 
-import javax.swing.*;
-
 public class FarmPlotController {
 
     private FarmPlot farmPlot;

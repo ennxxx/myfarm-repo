@@ -1,7 +1,6 @@
 package view;
 
 import model.Farmer;
-import model.levels.FarmerRanking;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,8 @@
 package model;
 
 import model.crops.Crop;
-import model.levels.*;
+import model.levels.Default;
+import model.levels.FarmerRanking;
 import model.tiles.Tile;
 
 public class Farmer {
