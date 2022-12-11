@@ -43,17 +43,19 @@ public class FarmPlot {
         // split by comma
         String[] tileConfigArray = tileConfig.split(",");
 
+        // check if less than 10 rocks are in the array
         for (String tile : tileConfigArray) {
             tileStack.push(tile.charAt(0));
         }
 
-
+        int rockCounter = 0;
         // init all tiles
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
-                if(!tileStack.empty() && tileStack.pop() == 'r') {
+                if(!tileStack.empty() && tileStack.pop() == 'r' && rockCounter < 30) {
                     System.out.println("rock");
                     tiles[i][j] = new UnavailableTile("rock");
+                    rockCounter++;
                 } else {
                     tiles[i][j] = new AvailableTile();
                 }
