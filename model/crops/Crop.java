@@ -1,5 +1,7 @@
 package model.crops;
 
+import javax.swing.*;
+
 public abstract class Crop {
     protected String name;
     protected double cost;
@@ -107,5 +109,29 @@ public abstract class Crop {
 
     public boolean isWatered() {
         return timesWatered >= waterNeeds;
+    }
+
+    public void growCrop() {
+        plantedSince++;
+        if(plantedSince == harvestTime) {
+            if(timesWatered < waterNeeds) {
+                System.out.println("not watered enough");
+                JOptionPane.showMessageDialog(null, "Your crop was not watered enough and has withered.");
+                wither();
+            }
+            if(timesFertilized < fertilizerNeeds) {
+                System.out.println("not fertilized enough");
+                JOptionPane.showMessageDialog(null, "Your crop was not fertilized enough!");
+                wither();
+            }
+            else {
+                System.out.println("crop is ready");
+                harvestable();
+            }
+        }
+
+        if(plantedSince > harvestTime) {
+            wither();
+        }
     }
 }

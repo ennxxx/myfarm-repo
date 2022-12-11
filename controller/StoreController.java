@@ -1,23 +1,44 @@
+package controller;
+
 import model.CropModel;
 import model.Farmer;
+import model.crops.Crop;
+import model.tiles.Tile;
+import view.FeedbackView;
+import view.StoreFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StoreController {
     private StoreFrame storeFrame;
+
+    private Crop[] cropLibrary;
+
+    private Crop activeCrop;
     private Farmer farmer;
+    private FarmerController farmerController;
 
     //TODO: integrate farmer into the store
-    public StoreController(StoreFrame storeFrame, Farmer farmer) {
+    public StoreController(StoreFrame storeFrame, FarmerController farmerController, FeedbackView feedbackView) {
         this.storeFrame = storeFrame;
-        this.farmer = farmer;
+        this.farmerController = farmerController;
+        this.farmer = farmerController.getFarmer();
+
+        CropFactory factory = new CropFactory();
+
+        this.cropLibrary = factory.getCropLibrary();
+
+        this.storeFrame.setCoinsLbl(farmer.getObjectCoins());
 
         this.storeFrame.setReturnBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == storeFrame.getReturnBtn()) {
                     storeFrame.getStoreFrame().setVisible(false);
+                    if(farmer.getInventory() != null) {
+                        feedbackView.updateFeedback("You're holding a: " + farmer.getInventory().getName());
+                    }
                 }
             }
         });
@@ -26,6 +47,7 @@ public class StoreController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 storeFrame.setFeedbackLblText(setInformation("Turnip"));
+                activeCrop = factory.create("Turnip");
             }
         });
 
@@ -33,13 +55,18 @@ public class StoreController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 storeFrame.setFeedbackLblText(setInformation("Carrot"));
+                activeCrop = factory.create("Carrot");
             }
         });
 
         this.storeFrame.setPotBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 storeFrame.setFeedbackLblText(setInformation("Potato"));
+
+                activeCrop = factory.create("Potato");
+
             }
         });
 
@@ -47,6 +74,7 @@ public class StoreController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 storeFrame.setFeedbackLblText(setInformation("Rose"));
+                activeCrop = factory.create("Rose");
             }
         });
 
@@ -54,6 +82,8 @@ public class StoreController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 storeFrame.setFeedbackLblText(setInformation("Tulips"));
+
+                activeCrop = factory.create("Tulips");
             }
         });
 
@@ -61,6 +91,7 @@ public class StoreController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 storeFrame.setFeedbackLblText(setInformation("Sunflower"));
+                activeCrop = factory.create("Sunflower");
             }
         });
 
@@ -77,6 +108,43 @@ public class StoreController {
                 storeFrame.setFeedbackLblText(setInformation("Apple"));
             }
         });
+
+        this.storeFrame.setBuyBtnListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                buySeed();
+            }
+        });
+    }
+
+    public void buySeed(){
+
+        if(activeCrop == null){
+
+            storeFrame.setFeedbackLblText(
+                    "No crop selected!"
+            );
+            return;
+        }
+        // get the price of the activeCrop
+        double price = activeCrop.getCost();
+        price -= farmer.getRank().getSeedDiscount();
+
+        farmer.setObjectCoins(
+                farmer.getObjectCoins() - price
+        );
+
+        farmer.setInventory(activeCrop);
+
+        storeFrame.setFeedbackLblText(
+                "Purchased!"
+        );
+
+        storeFrame.setCoinsLbl(
+                farmer.getObjectCoins()
+        );
+
+        farmerController.updateFarmerView();
     }
 
     public String setInformation(String seedName) {
@@ -89,5 +157,18 @@ public class StoreController {
                 "<p><b>Type: </b>" + cropModel.getType() + "</p>" +
                 "<p><b>Cost: </b>" + cropModel.getCost() + "</p>" +
                 "</left></html>";
+    }
+
+    public double getCheapestPrice() {
+
+        double cheapestPrice = cropLibrary[0].getCost();
+
+        for (Crop crop : cropLibrary) {
+            if (crop.getCost() < cheapestPrice) {
+                cheapestPrice = crop.getCost();
+            }
+        }
+
+        return cheapestPrice;
     }
 }

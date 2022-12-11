@@ -21,6 +21,21 @@ public abstract class FarmerRanking {
         return registrationFee;
     }
 
+    public int getSeedDiscount(){
+        return seedDiscount;
+    }
+
+    public int getBonusEarnings(){
+        return bonusEarnings;
+    }
+
+    public int getWaterBonusInc(){
+        return waterBonusInc;
+    }
+    public int getFertilizerBonusInc(){
+        return fertilizerBonusInc;
+    }
+
     public String getLevelTitle() {
         return levelTitle;
     }

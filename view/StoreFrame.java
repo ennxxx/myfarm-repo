@@ -1,3 +1,5 @@
+package view;
+
 import view.FarmerView;
 
 import javax.swing.*;
@@ -183,5 +185,13 @@ public class StoreFrame {
     }
     public void setManBtnListener(ActionListener actionListener) {
         this.manBtn.addActionListener(actionListener);
+    }
+
+    public void setCoinsLbl(double coins){
+        this.coinsLbl.setText(String.valueOf(coins));
+    }
+
+    public void setBuyBtnListener(ActionListener actionListener) {
+        this.buyBtn.addActionListener(actionListener);
     }
 }

@@ -45,8 +45,7 @@ public class TileView extends JPanel {
     // Randomly generated rocks
 
     public JButton[][] getTileView() {
-        System.out.println("height: " + this.tileViewIndex.length);
-        System.out.println("width: " + this.tileViewIndex[0].length);
+
         return this.tileViewIndex;
     }
 
@@ -54,10 +53,18 @@ public class TileView extends JPanel {
         return switch (tileType.toLowerCase()) {
             case "unplowed" -> new ImageIcon("assets/tiles/unplowed.png");
             case "plowed" -> new ImageIcon("assets/tiles/plowed.png");
-            case "watered" -> new ImageIcon("assets/tiles/crop_water");
+            case "watered" -> new ImageIcon("assets/tiles/crop_water.png");
             case "withered" -> new ImageIcon("assets/tiles/withered.png");
             case "harvestable" -> new ImageIcon("assets/tiles/crop_nwater.png");
             case "rock" -> new ImageIcon("assets/tiles/rock.png");
+            case "apple" -> new ImageIcon("assets/crops/apple.png");
+            case "carrot" -> new ImageIcon("assets/crops/carrot.png");
+            case "mango" -> new ImageIcon("assets/crops/mango.png");
+            case "potato" -> new ImageIcon("assets/crops/potato.png");
+            case "rose" -> new ImageIcon("assets/crops/rose.png");
+            case "sunflower" -> new ImageIcon("assets/crops/sunflower.png");
+            case "turnip" -> new ImageIcon("assets/crops/turnip.png");
+            case "tulip" -> new ImageIcon("assets/crops/tulip.png");
             default -> new ImageIcon("assets/tiles/unplowed.png");
         };
     }
@@ -70,10 +77,14 @@ public class TileView extends JPanel {
             tileView.setIcon(changeTileDisplay("plowed"));
         }
         if (tile instanceof HarvestableTile) {
+            tileView.setIcon(changeTileDisplay("harvestable"));
             if (((HarvestableTile) tile).getCrop().isWatered()) {
+                System.out.println("crop is watered");
                 tileView.setIcon(changeTileDisplay("watered"));
-            } else {
-                tileView.setIcon(changeTileDisplay("harvestable"));
+            }
+            if (((HarvestableTile) tile).getCrop().isReady()) {
+                System.out.println("harvestable");
+                tileView.setIcon(changeTileDisplay(((HarvestableTile) tile).getCrop().getName().toLowerCase()));
             }
         }
         if (tile instanceof UnavailableTile) {

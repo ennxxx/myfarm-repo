@@ -27,4 +27,5 @@ public abstract class Tile {
     public void setY(int i) {
         y = i;
     }
+
 }

@@ -6,10 +6,11 @@ import model.crops.Crop;
 public class HarvestableTile extends Tile {
     private Crop crop;
 
-    public HarvestableTile() {
+    public HarvestableTile(Crop crop) {
         this.available = false;
         this.harvestable = true;
         this.isPlowed = true;
+        this.crop = crop;
     }
 
     public Crop getCrop() {

@@ -19,7 +19,7 @@ public class MainFrame {
     private JFrame mainFrame;
     private JLabel bgLbl;
     private JPanel menuPanel;
-    private JButton sleepBtn, plantBtn, lvlBtn, exitBtn;
+    private JButton sleepBtn, plantBtn, lvlBtn, exitBtn, placeCropBtn, harvestBtn;
 
     public MainFrame() {
 
@@ -42,7 +42,7 @@ public class MainFrame {
         // Sets panel for menu buttons
         this.menuPanel = new JPanel();
         this.menuPanel.setOpaque(false);
-        GridLayout menuLayout = new GridLayout(4, 1,0,10);
+        GridLayout menuLayout = new GridLayout(6, 1,0,10);
         this.menuPanel.setLayout(menuLayout);
         this.menuPanel.setBounds(20, 300, 130, 230);
 
@@ -55,11 +55,15 @@ public class MainFrame {
         this.plantBtn = new JButton(plant);
         this.lvlBtn = new JButton(levelUp);
         this.exitBtn = new JButton(exit);
+        this.placeCropBtn = new JButton("Place crop");
+        this.harvestBtn = new JButton("Harvest");
 
         this.menuPanel.add(sleepBtn);
         this.menuPanel.add(plantBtn);
+        this.menuPanel.add(placeCropBtn);
         this.menuPanel.add(lvlBtn);
         this.menuPanel.add(exitBtn);
+        this.menuPanel.add(harvestBtn);
 
         // Places components in the frame
 
@@ -86,11 +90,26 @@ public class MainFrame {
         this.sleepBtn.addActionListener(actionListener);
     }
 
+    public void setPlaceCropBtnListener(ActionListener actionListener){
+        this.placeCropBtn.addActionListener(actionListener);
+    }
+
+    public void setHarvestBtnListener(ActionListener actionListener){
+        this.harvestBtn.addActionListener(actionListener);
+    }
+
+    public void setLvlBtnListener(ActionListener actionListener){
+        this.lvlBtn.addActionListener(actionListener);
+    }
+
     public JFrame getMainFrame() {
         return this.mainFrame;
     }
     public JButton getPlantBtn() {
         return this.plantBtn;
+    }
+    public JButton getPlaceCropBtn() {
+        return this.placeCropBtn;
     }
 
     public ToolView getToolView() {

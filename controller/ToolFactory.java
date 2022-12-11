@@ -52,7 +52,7 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
 
-                    if (tile instanceof AvailableTile) {
+                    if (tile instanceof HarvestableTile) {
                         feedback.setPrompt("Fertilized");
                         feedback.setSuccess(true);
                     }

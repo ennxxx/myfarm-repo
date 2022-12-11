@@ -54,4 +54,8 @@ public class FarmPlot {
     public int getWidth() {
         return width;
     }
+
+    public Tile getTile(int y, int x) {
+        return tiles[y][x];
+    }
 }

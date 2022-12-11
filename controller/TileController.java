@@ -40,6 +40,10 @@ public class TileController {
         }
     }
 
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
 
     public void updateFarmPanel(){
 
@@ -78,7 +82,6 @@ public class TileController {
     }
 
     public void updateTile(int x, int y, Tile newTile){
-        System.out.println();
         this.tiles[y][x] = newTile;
     }
 

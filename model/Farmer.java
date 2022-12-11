@@ -1,6 +1,8 @@
 package model;
 
+import model.crops.Crop;
 import model.levels.*;
+import model.tiles.Tile;
 
 public class Farmer {
     private double exp;
@@ -8,8 +10,11 @@ public class Farmer {
     private FarmerRanking rank;
     private double objectCoins;
     private int days;
+    private Crop inventory;
+    private Tile activeTile;
 
     public Farmer() {
+        this.activeTile = null;
         this.exp = 0;
         this.level = 0;
         this.rank = new Default();
@@ -56,5 +61,30 @@ public class Farmer {
 
     public void advanceDay() {
         this.days++;
+    }
+
+    public void setInventory(Crop activeCrop) {
+        this.inventory = activeCrop;
+    }
+
+    public Crop getInventory(){
+        return this.inventory;
+    }
+
+    public void setTile(Tile lastClicked) {
+        this.activeTile = lastClicked;
+    }
+    public Tile getActiveTile(){
+        return this.activeTile;
+    }
+
+    public double getXp() {
+        return this.exp;
+    }
+
+    public void setXp(double xp) {
+        this.exp = xp;
+        int lvl = (int) this.exp / 100;
+        this.level = lvl;
     }
 }

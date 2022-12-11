@@ -11,6 +11,7 @@ public class ToolController {
     public Tile useTool(String toolName, Tile tile) {
         Tool tool = tf.create(toolName);
 
+
         Feedback feedback = tool.use(tile);
 
         if (!feedback.isSuccess()) {
@@ -21,9 +22,10 @@ public class ToolController {
             case "plow" -> {
                 return new PlantableTile();
             }
-            case "wateringcan" -> {
+            case "watering can" -> {
                 if(tile instanceof HarvestableTile) {
                     ((HarvestableTile) tile).getCrop().water();
+                    System.out.println("Watered");
                     return tile;
                 }
             }
@@ -33,6 +35,7 @@ public class ToolController {
             case "fertilizer" -> {
                 if(tile instanceof HarvestableTile) {
                     ((HarvestableTile) tile).getCrop().fertilize();
+                    System.out.println("fertilized");
                     return tile;
                 }
             }
