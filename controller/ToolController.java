@@ -3,8 +3,16 @@ package controller;
 import model.Feedback;
 import model.tiles.*;
 import model.tools.Tool;
+import view.FeedbackView;
+
 
 public class ToolController {
+
+    FeedbackView feedbackView;
+
+    public ToolController(FeedbackView feedbackView) {
+        this.feedbackView = feedbackView;
+    }
 
     ToolFactory tf = new ToolFactory();
 
@@ -13,6 +21,9 @@ public class ToolController {
 
 
         Feedback feedback = tool.use(tile);
+
+        feedbackView.updateFeedback(feedback.getPrompt());
+
 
         if (!feedback.isSuccess()) {
             return tile;
@@ -27,9 +38,12 @@ public class ToolController {
             case "watering can" -> {
                 if(tile instanceof HarvestableTile) {
                     ((HarvestableTile) tile).getCrop().water();
-                    System.out.println("Watered");
-                    return tile;
+                    feedbackView.updateFeedback("Watered");
                 }
+                else{
+                    feedbackView.updateFeedback("Unable to water");
+                }
+                return tile;
             }
             case "pickaxe" ->{
                 if(tile instanceof UnavailableTile){
@@ -42,8 +56,11 @@ public class ToolController {
                 if(tile instanceof HarvestableTile) {
                     ((HarvestableTile) tile).getCrop().fertilize();
                     System.out.println("fertilized");
-                    return tile;
                 }
+                else{
+                    feedbackView.updateFeedback("Unable to fertilize");
+                }
+                return tile;
             }
             case "shovel" -> {
                 if((tile instanceof UnavailableTile && ((UnavailableTile) tile).getObstruction().equals("withered plant")) || (tile instanceof HarvestableTile )) {

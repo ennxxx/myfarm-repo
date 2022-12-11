@@ -12,6 +12,9 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
 
+                    feedback.setPrompt("Unable to plow");
+                    feedback.setSuccess(false);
+
                     if (tile instanceof AvailableTile) {
                         feedback.setPrompt("Plowed");
                         feedback.setSuccess(true);
@@ -24,6 +27,9 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 @Override
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
+
+                    feedback.setPrompt("Unable to water");
+                    feedback.setSuccess(false);
 
                     if (tile instanceof HarvestableTile) {
                         feedback.setPrompt("Watered");
@@ -39,6 +45,9 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
 
+                    feedback.setPrompt("Unable to mine");
+                    feedback.setSuccess(false);
+
                     if (tile instanceof UnavailableTile && ((UnavailableTile) tile).getObstruction().equals("rock")) {
                         feedback.setPrompt("Mined");
                         feedback.setSuccess(true);
@@ -51,6 +60,9 @@ public class ToolFactory implements AbstractFactory<Tool, String> {
                 @Override
                 public Feedback use(Tile tile) {
                     Feedback feedback = new Feedback();
+
+                    feedback.setPrompt("Unable to fertilize");
+                    feedback.setSuccess(false);
 
                     if (tile instanceof HarvestableTile) {
                         feedback.setPrompt("Fertilized");

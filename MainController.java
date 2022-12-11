@@ -49,7 +49,7 @@ public class MainController {
 
         // instantiate controllers
         this.farmerController = new FarmerController(this.farmerView);
-        this.toolController = new ToolController();
+        this.toolController = new ToolController(this.feedbackView);
         this.farmPlotController = new FarmPlotController();
         this.storeController = new StoreController(storeFrame, farmerController, feedbackView);
         this.tileController = new TileController(farmPlot.getTiles(), tileView, farmPlot.getHeight(), farmPlot.getWidth());
@@ -76,6 +76,12 @@ public class MainController {
 
                 display = farmerController.setActiveTool("Watering Can");
 
+                if(!(lastClicked instanceof HarvestableTile)) {
+                    display.setPrompt("You can only water plants!");
+                    feedbackView.updateFeedback(display.getPrompt());
+                    return;
+                }
+
                 // get the crop's water level
                 int waterLevel = ((HarvestableTile) lastClicked).getCrop().getTimesWatered();
                 int waterBonus = ((HarvestableTile) lastClicked).getCrop().getWaterBonus();
@@ -97,6 +103,12 @@ public class MainController {
             public void actionPerformed(ActionEvent e) {
 
                 display = farmerController.setActiveTool("Fertilizer");
+
+                if(!(lastClicked instanceof HarvestableTile)) {
+                    display.setPrompt("You can only use fertilizer on a crop!");
+                    feedbackView.updateFeedback(display.getPrompt());
+                    return;
+                }
 //
                 int fertilizerLevel = ((HarvestableTile) lastClicked).getCrop().getTimesFertilized();
                 int fertilizerBonus = ((HarvestableTile) lastClicked).getCrop().getFertilizerBonus();
@@ -312,13 +324,11 @@ public class MainController {
         Tile currentTile = farmerController.getFarmer().getActiveTile();
 
         // plow the tile
-        Feedback toolFeedback = useToolOnTile(currentTool.getName(), currentTile);
+        useToolOnTile(currentTool.getName(), currentTile);
         tileView.updateTileView(currentTile, farmerController.getActiveTileView());
 
         tileController.updateTileViewIndex();
         tileController.updateFarmPanel();
-
-        feedbackView.updateFeedback(display.getPrompt() + toolFeedback.getPrompt());
 
         // give farmer XP
         farmerController.getFarmer().setXp(farmerController.getFarmer().getXp() + currentTool.getExpGain());
@@ -362,8 +372,7 @@ public class MainController {
         return feedback;
     }
 
-    public Feedback useToolOnTile(String toolName, Tile tile) {
-        Feedback feedback = new Feedback();
+    public void useToolOnTile(String toolName, Tile tile) {
             Tile newTile = this.toolController.useTool(toolName, tile);
             newTile.setX(
                     tile.getX()
@@ -377,11 +386,6 @@ public class MainController {
 
             tile = newTile;
             // TODO: update farm stats
-
-            feedback.setSuccess(true);
-            feedback.setPrompt("You used " + toolName + " on a tile!");
-
-            return feedback;
     }
 
     public Feedback printTileStatus(Tile tile){
