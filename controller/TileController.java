@@ -21,7 +21,7 @@ public class TileController {
         this.width = width;
         this.tileView = tileView;
         this.clickedTile = null;
-
+        updateTileViewIndex();
     }
 
 

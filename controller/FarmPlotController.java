@@ -13,7 +13,6 @@ public class FarmPlotController {
 
     public FarmPlotController() {
         this.farmPlot = new FarmPlot();
-
     }
 
     public boolean isFull() {

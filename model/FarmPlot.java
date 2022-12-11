@@ -4,8 +4,16 @@ import controller.CropFactory;
 import model.crops.Crop;
 import model.tiles.AvailableTile;
 import model.tiles.Tile;
+import model.tiles.UnavailableTile;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class FarmPlot {
     private Tile[][] tiles;
@@ -20,10 +28,35 @@ public class FarmPlot {
         tiles = new Tile[height][width];
         availableCrops = new ArrayList<>();
 
+        // read the tile config file
+
+        Stack<Character> tileStack = new Stack<Character>();
+
+        String tileConfig = "";
+
+        try {
+            tileConfig = new String(Files.readAllBytes(Paths.get("tileConfig.txt")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // split by comma
+        String[] tileConfigArray = tileConfig.split(",");
+
+        for (String tile : tileConfigArray) {
+            tileStack.push(tile.charAt(0));
+        }
+
+
         // init all tiles
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
-                tiles[i][j] = new AvailableTile();
+                if(!tileStack.empty() && tileStack.pop() == 'r') {
+                    System.out.println("rock");
+                    tiles[i][j] = new UnavailableTile("rock");
+                } else {
+                    tiles[i][j] = new AvailableTile();
+                }
                 tiles[i][j].setX(j);
                 tiles[i][j].setY(i);
             }
