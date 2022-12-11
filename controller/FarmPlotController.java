@@ -26,7 +26,7 @@ public class FarmPlotController {
             }
         }
 
-        return false;
+        return true;
     }
 
 
@@ -73,6 +73,6 @@ public class FarmPlotController {
             }
         }
 
-        return false;
+        return true;
     }
 }
