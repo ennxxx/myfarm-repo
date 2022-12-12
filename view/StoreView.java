@@ -5,21 +5,27 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
 
-public class StoreFrame {
-    private JFrame storeFrame;
+/**
+ * This is a view class for the store frame, which holds crop information.
+ */
+public class StoreView {
+    private JFrame storeView;
     private JPanel menuPanel, seedPanel;
     private JLabel bgLbl, coinsLbl, feedbackLbl;
     private JButton turBtn, carBtn, potBtn, rosBtn, tulBtn, sunBtn, manBtn, appBtn;
     private JButton buyBtn, returnBtn;
 
-    public StoreFrame() {
+    /**
+     * Constructor that initializes a store frame.
+     */
+    public StoreView() {
 
         // Initializes the frame
-        this.storeFrame = new JFrame("Seed Store");
-        this.storeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.storeFrame.setResizable(false);
-        this.storeFrame.setSize(500, 650);
-        this.storeFrame.setLayout(null);
+        this.storeView = new JFrame("Seed Store");
+        this.storeView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.storeView.setResizable(false);
+        this.storeView.setSize(500, 650);
+        this.storeView.setLayout(null);
 
         // Places background
         this.bgLbl = new JLabel();
@@ -39,13 +45,6 @@ public class StoreFrame {
         this.feedbackLbl.setForeground(new Color(0x633828));
         this.feedbackLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
         this.feedbackLbl.setBounds(51,285,100,160);
-
-        // Set return button
-        // (If return button only, make sure to add this.storeFrame.add(returnBtn))
-        // this.returnBtn = new JButton();
-        // Icon rtn = new ImageIcon("assets/seedStore/return.png");
-        // this.returnBtn = new JButton(rtn);
-        // this.returnBtn.setBounds(20,470,160,62);
 
         // Set menu panel
         this.menuPanel = new JPanel();
@@ -109,16 +108,21 @@ public class StoreFrame {
         this.seedPanel.add(appBtn);
 
         // Places components in the frame
-        this.storeFrame.add(this.coinsLbl);
-        this.storeFrame.add(this.feedbackLbl);
-        this.storeFrame.add(this.menuPanel);
-        this.storeFrame.add(this.seedPanel);
-        this.storeFrame.add(this.bgLbl);
+        this.storeView.add(this.coinsLbl);
+        this.storeView.add(this.feedbackLbl);
+        this.storeView.add(this.menuPanel);
+        this.storeView.add(this.seedPanel);
+        this.storeView.add(this.bgLbl);
 
         // Store frame is not visible at the start
-        this.storeFrame.setVisible(false);
+        this.storeView.setVisible(false);
     }
 
+    /**
+     * Changes the button label's font, color, and position.
+     *
+     * @param buttonName name of button
+     */
     public void btnSettings(JButton buttonName) {
         buttonName.setForeground(new Color(0x633828));
         buttonName.setVerticalTextPosition(AbstractButton.CENTER);
@@ -126,6 +130,11 @@ public class StoreFrame {
         changeBFont(buttonName);
     }
 
+    /**
+     * Changes the font and size of a button.
+     *
+     * @param buttonName name of button
+     */
     public void changeBFont(JButton buttonName) {
         try {
             InputStream is = FarmerView.class.getResourceAsStream("../assets/Minecraft.ttf");
@@ -135,6 +144,11 @@ public class StoreFrame {
         catch(Exception e){}
     }
 
+    /**
+     * Changes the font and size of a label.
+     *
+     * @param labelName name of label
+     */
     public void changeLFont(JLabel labelName) {
         try {
             InputStream is = FarmerView.class.getResourceAsStream("../assets/Minecraft.ttf");
@@ -144,52 +158,101 @@ public class StoreFrame {
         catch(Exception e){}
     }
 
-    public JFrame getStoreFrame() {
+    /**
+     * Gets the store view.
+     *
+     * @return store view
+     */
+    public JFrame getStoreView() { return this.storeView; }
 
-        return this.storeFrame;
-    }
-    public JButton getReturnBtn() {
+    /**
+     * Gets the return button.
+     *
+     * @return return button
+     */
+    public JButton getReturnBtn() { return this.returnBtn; }
 
-        return this.returnBtn;
-    }
-    public void setFeedbackLblText(String text) {
+    /**
+     * Sets text in the feedback label.
+     *
+     * @param text action text
+     */
+    public void setFeedbackLblText(String text) { this.feedbackLbl.setText(text); }
 
-        this.feedbackLbl.setText(text);
-    }
-    public void setReturnBtnListener(ActionListener actionListener) {
+    /**
+     * Sets return button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setReturnBtnListener(ActionListener actionListener) { this.returnBtn.addActionListener(actionListener); }
 
-        this.returnBtn.addActionListener(actionListener);
-    }
-    public void setTurBtnListener(ActionListener actionListener) {
-        this.turBtn.addActionListener(actionListener);
-    }
-    public void setCarBtnListener(ActionListener actionListener) {
-        this.carBtn.addActionListener(actionListener);
-    }
-    public void setPotBtnListener(ActionListener actionListener) {
-        this.potBtn.addActionListener(actionListener);
-    }
-    public void setRosBtnListener(ActionListener actionListener) {
-        this.rosBtn.addActionListener(actionListener);
-    }
-    public void setTulBtnListener(ActionListener actionListener) {
-        this.tulBtn.addActionListener(actionListener);
-    }
-    public void setSunBtnListener(ActionListener actionListener) {
-        this.sunBtn.addActionListener(actionListener);
-    }
-    public void setAppBtnListener(ActionListener actionListener) {
-        this.appBtn.addActionListener(actionListener);
-    }
-    public void setManBtnListener(ActionListener actionListener) {
-        this.manBtn.addActionListener(actionListener);
-    }
+    /**
+     * Sets turnip button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setTurBtnListener(ActionListener actionListener) { this.turBtn.addActionListener(actionListener); }
 
-    public void setCoinsLbl(double coins){
-        this.coinsLbl.setText(String.valueOf(coins));
-    }
+    /**
+     * Sets carrot button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setCarBtnListener(ActionListener actionListener) { this.carBtn.addActionListener(actionListener); }
 
-    public void setBuyBtnListener(ActionListener actionListener) {
-        this.buyBtn.addActionListener(actionListener);
-    }
+    /**
+     * Sets potato button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setPotBtnListener(ActionListener actionListener) { this.potBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets rose button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setRosBtnListener(ActionListener actionListener) { this.rosBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets tulips button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setTulBtnListener(ActionListener actionListener) { this.tulBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets sunflower button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setSunBtnListener(ActionListener actionListener) { this.sunBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets apple button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setAppBtnListener(ActionListener actionListener) { this.appBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets mango button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setManBtnListener(ActionListener actionListener) { this.manBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets the coin label given number of coins a farmer has.
+     *
+     * @param coins Objectcoins of a farmer
+     */
+    public void setCoinsLbl(double coins){ this.coinsLbl.setText(String.valueOf(coins)); }
+
+    /**
+     * Sets buy button to do an action.
+     *
+     * @param actionListener action to be done
+     */
+    public void setBuyBtnListener(ActionListener actionListener) { this.buyBtn.addActionListener(actionListener); }
 }

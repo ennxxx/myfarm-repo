@@ -1,34 +1,38 @@
-import view.FarmerView;
-import view.FeedbackView;
-import view.TileView;
-import view.ToolView;
-
+import view.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class MainFrame {
+/**
+ * This class shows the main view or frame of the program.
+ *
+ * @version 2.0
+ */
+public class MainView {
     ToolView toolView = new ToolView();
     TileView tileView = new TileView();
     FarmerView farmerView = new FarmerView();
     FeedbackView feedbackView = new FeedbackView();
 
-    private JFrame mainFrame;
+    private JFrame mainView;
     private JLabel bgLbl;
     private JPanel menuPanel;
     private JButton sleepBtn, storeBtn, lvlBtn, exitBtn, plantBtn, harvestBtn;
 
-    public MainFrame() {
+    /**
+     * Constructor that initializes the frame with assets.
+     */
+    public MainView() {
 
         // Initializes the frame
-        this.mainFrame = new JFrame("My Farm");
-        this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainFrame.setResizable(false);
-        this.mainFrame.setSize(1280, 800);
-        this.mainFrame.setLayout(null);
+        this.mainView = new JFrame("My Farm");
+        this.mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.mainView.setResizable(false);
+        this.mainView.setSize(1280, 800);
+        this.mainView.setLayout(null);
 
         ImageIcon logo = new ImageIcon("assets/farm/logo.png");
-        this.mainFrame.setIconImage(logo.getImage());
+        this.mainView.setIconImage(logo.getImage());
 
         // Places background
         this.bgLbl = new JLabel();
@@ -65,63 +69,106 @@ public class MainFrame {
         this.menuPanel.add(exitBtn);
 
         // Places components in the frame
-        this.mainFrame.add(toolView.getToolView());
-        this.mainFrame.add(tileView.getFarmPanel());
-        this.mainFrame.add(farmerView.getFarmerView());
-        this.mainFrame.add(feedbackView.getFeedbackView());
-        this.mainFrame.add(this.menuPanel);
-        this.mainFrame.add(this.bgLbl);
+        this.mainView.add(toolView.getToolView());
+        this.mainView.add(tileView.getFarmPanel());
+        this.mainView.add(farmerView.getFarmerView());
+        this.mainView.add(feedbackView.getFeedbackView());
+        this.mainView.add(this.menuPanel);
+        this.mainView.add(this.bgLbl);
 
         // Show the main frame
-        this.mainFrame.setVisible(true);
+        this.mainView.setVisible(true);
     }
 
+    /**
+     * Sets an action to the exitBtn.
+     *
+     * @param actionListener action to be done
+     */
     public void setExitBtnListener(ActionListener actionListener) {
         this.exitBtn.addActionListener(actionListener);
     }
 
-    public void setPlantBtnListener(ActionListener actionListener) {
+    /**
+     * Sets an action to the storeBtn.
+     *
+     * @param actionListener action to be done
+     */
+    public void setStoreBtnListener(ActionListener actionListener) {
         this.storeBtn.addActionListener(actionListener);
     }
 
+    /**
+     * Sets an action to the harvestBtn.
+     *
+     * @param actionListener action to be done
+     */
+    public void setHarvestBtnListener(ActionListener actionListener){ this.harvestBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets an action to the plantBtn.
+     *
+     * @param actionListener action to be done
+     */
+    public void setPlantCropBtnListener(ActionListener actionListener){ this.plantBtn.addActionListener(actionListener); }
+
+    /**
+     * Sets an action to the sleepBtn.
+     *
+     * @param actionListener action to be done
+     */
     public void setSleepBtnListener(ActionListener actionListener) {
         this.sleepBtn.addActionListener(actionListener);
     }
 
-    public void setPlaceCropBtnListener(ActionListener actionListener){
-        this.plantBtn.addActionListener(actionListener);
-    }
-
-    public void setHarvestBtnListener(ActionListener actionListener){
-        this.harvestBtn.addActionListener(actionListener);
-    }
-
+    /**
+     * Sets an action to the lvlBtn.
+     *
+     * @param actionListener action to be done
+     */
     public void setLvlBtnListener(ActionListener actionListener){
         this.lvlBtn.addActionListener(actionListener);
     }
 
-    public JFrame getMainFrame() {
-        return this.mainFrame;
-    }
+    /**
+     * Gets the storeBtn.
+     */
     public JButton getStoreBtn() {
         return this.storeBtn;
     }
-    public JButton getPlantBtn() {
-        return this.plantBtn;
-    }
 
+    /**
+     * Gets the view that shows all tools.
+     *
+     * @return toolView
+     */
     public ToolView getToolView() {
         return this.toolView;
     }
 
+    /**
+     * Gets the view that displays feedback.
+     *
+     * @return feedbackView
+     */
     public FeedbackView getFeedbackView() {
         return this.feedbackView;
     }
 
+    /**
+     * Gets the view that shows farmer information and status.
+     *
+     * @return farmerView
+     */
     public FarmerView getFarmerView() {
         return this.farmerView;
     }
 
+    /**
+     * Gets the view of the farmland with 10x5 tiles.
+     *
+     * @return tileView
+     */
     public TileView getTileView() {
         return this.tileView;
     }

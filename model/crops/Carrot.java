@@ -1,5 +1,8 @@
 package model.crops;
 
+/**
+ * This is a child class of Crop that holds information about the Carrot crop.
+ */
 public class Carrot extends Crop {
     public Carrot() {
         this.name = "Carrot";

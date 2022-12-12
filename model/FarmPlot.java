@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * This is a class that represents the farm plot in the game.
+ */
 public class FarmPlot {
     private Tile[][] tiles;
     ArrayList<Crop> availableCrops;
@@ -22,34 +25,35 @@ public class FarmPlot {
     int width;
     int[] rockFormation;
 
+    /**
+     * Constructor that initializes a farm plot.
+     */
     public FarmPlot() {
         this.height = 5;
         this.width = 10;
         tiles = new Tile[height][width];
         availableCrops = new ArrayList<>();
 
-        // read the tile config file
-
+        // Read the tile config file
         Stack<Character> tileStack = new Stack<Character>();
-
         String tileConfig = "";
-
         try {
             tileConfig = new String(Files.readAllBytes(Paths.get("tileConfig.txt")));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // split by comma
+        // Split by commas
         String[] tileConfigArray = tileConfig.split(",");
 
-        // check if less than 10 rocks are in the array
+        // Check if less than 10 rocks are in the array
         for (String tile : tileConfigArray) {
             tileStack.push(tile.charAt(0));
         }
 
         int rockCounter = 0;
-        // init all tiles
+
+        // Initialize all tiles
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 if(!tileStack.empty() && tileStack.pop() == 'r' && rockCounter < 30) {
@@ -65,31 +69,51 @@ public class FarmPlot {
         }
     }
 
+    /**
+     * Updates the tile model.
+     *
+     * @param tile tiles in a farm plot
+     * @param x x-coordinate of a tile
+     * @param y y-coordinate of a tile
+     */
     public void updateTileModel(Tile tile, int x, int y) {
         tiles[x][y] = tile;
     }
 
-    public void initializeCrops() {
-        String[] cropList = {"Turnip", "Carrot", "Potato", "Rose", "Tulips", "Sunflower", "Mango", "Apple"};
-        CropFactory cropFactory = new CropFactory();
-
-        for (String crop : cropList) {
-            availableCrops.add(cropFactory.create(crop));
-        }
-    }
-
+    /**
+     * Gets the tiles in a farm plot.
+     *
+     * @return tiles
+     */
     public Tile[][] getTiles() {
         return tiles;
     }
 
+    /**
+     * Gets the height of a farm plot
+     *
+     * @return height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Gets the width of a farm plot
+     *
+     * @return width
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Gets a specific tile in a farm plot.
+     *
+     * @param y y-coordinate
+     * @param x x-coordinate
+     * @return tiles[x][y]
+     */
     public Tile getTile(int y, int x) {
         return tiles[y][x];
     }

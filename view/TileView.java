@@ -6,12 +6,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * This is a view class that displays the farm plot made of Tiles.
+ */
 public class TileView extends JPanel {
     private Icon tileDisplay;
 
     private JPanel farmPanel;
     private JButton[][] tileViewIndex;
 
+
+    /**
+     * Constructor that sets down a farm plot.
+     */
     public TileView() {
 
         this.farmPanel = new JPanel();
@@ -22,8 +29,8 @@ public class TileView extends JPanel {
 
         int height = 5;
         int width = 10;
-
         this.tileViewIndex = new JButton[5][10];
+
         // Sets all tiles as unplowed
         this.tileDisplay = new ImageIcon("assets/tiles/unplowed.png");
 
@@ -36,19 +43,33 @@ public class TileView extends JPanel {
         }
     }
 
+    /**
+     * Sets tile button to do action.
+     *
+     * @param action action to be done
+     */
     public void setTileBtnAction(ActionListener action){
         for (Component c : this.farmPanel.getComponents()) {
             ((JButton) c).addActionListener(action);
         }
     }
 
-    // Randomly generated rocks
-
+    /**
+     * Gets the tile view.
+     *
+     * @return tile view
+     */
     public JButton[][] getTileView() {
 
         return this.tileViewIndex;
     }
 
+    /**
+     * Changes the display of a single tile accordingly.
+     *
+     * @param tileType conditions of a tile
+     * @return new tile image
+     */
     public Icon changeTileDisplay(String tileType) {
         return switch (tileType.toLowerCase()) {
             case "unplowed" -> new ImageIcon("assets/tiles/unplowed.png");
@@ -69,6 +90,12 @@ public class TileView extends JPanel {
         };
     }
 
+    /**
+     * Updates a tile view accordingly.
+     *
+     * @param tile a single tile from the farm plot
+     * @param tileView the view of the button
+     */
     public void updateTileView(Tile tile, JButton tileView) {
         if (tile instanceof AvailableTile) {
             tileView.setIcon(changeTileDisplay("unplowed"));
@@ -95,14 +122,16 @@ public class TileView extends JPanel {
                 case "growing tree" -> tileView.setIcon(changeTileDisplay("tree"));
             }
         }
-
         tileView.revalidate();
         tileView.repaint();
     }
 
+    /**
+     * Get the view of the farm plot.
+     *
+     * @return farm panel
+     */
     public JPanel getFarmPanel() {
         return this.farmPanel;
     }
 }
-
-    // set btn action for each button til

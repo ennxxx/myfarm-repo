@@ -1,6 +1,9 @@
 package model.crops;
 
-public class Apple extends Crop{
+/**
+ * This is a child class of Crop that holds information about the Apple fruit tree.
+ */
+public class Apple extends Crop {
     public Apple() {
         this.name = "Apple";
         this.cost = 200.0;

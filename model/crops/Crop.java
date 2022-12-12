@@ -2,6 +2,9 @@ package model.crops;
 
 import javax.swing.*;
 
+/**
+ * This is the Crop parent class that holds crop information.
+ */
 public abstract class Crop {
     protected String name;
     protected double cost;
@@ -26,111 +29,207 @@ public abstract class Crop {
     protected boolean isReady;
     protected boolean isWithered;
 
+    /**
+     * Gets the cost of a crop.
+     *
+     * @return cost of crop
+     */
     public double getCost() {
         return cost;
     }
 
+    /**
+     * Gets the name of a crop.
+     *
+     * @return name of crop
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the type of crop.
+     *
+     * @return type of crop
+     */
     public String getType(){
         return type;
     }
 
+    /**
+     * Gets the number of times a crop has been watered.
+     *
+     * @return times watered
+     */
     public int getTimesWatered() {
         return timesWatered;
     }
 
+    /**
+     * Gets the water needs of a crop.
+     *
+     * @return water needs
+     */
     public int getWaterNeeds() {
         return waterNeeds;
     }
 
+    /**
+     * Gets the water bonus limit of a crop.
+     *
+     * @return water bonus
+     */
     public int getWaterBonus() {
         return waterBonus;
     }
 
+    /**
+     * Gets the number of times a crop has been fertilized.
+     *
+     * @return times fertilized
+     */
     public int getTimesFertilized() {
         return timesFertilized;
     }
 
+    /**
+     * Gets the fertilizer needs of a crop.
+     *
+     * @return fertilizer needs
+     */
     public int getFertilizerNeeds() {
         return fertilizerNeeds;
     }
 
+    /**
+     * Gets the fertilizer bonus limit of a crop.
+     *
+     * @return fertilizer bonus
+     */
     public int getFertilizerBonus() {
         return fertilizerBonus;
     }
 
+    /**
+     * Gets experience gained from harvesting a crop.
+     *
+     * @return experience gain
+     */
     public double getExpGain() {
         return expGain;
     }
 
+    /**
+     * Gets the harvest time of a crop.
+     *
+     * @return harvest time
+     */
     public int getHarvestTime() {
         return harvestTime;
     }
 
+    /**
+     * Gets the yield of a harvest.
+     *
+     * @return harvest yield
+     */
     public int getHarvestYield() {
         int yield = (int) (Math.random() * (harvestYieldMax - harvestYieldMin + 1) + harvestYieldMin);
         return yield;
     }
 
+    /**
+     * Gets the base selling price of a crop.
+     *
+     * @return base price
+     */
     public double getBasePrice() {
         return basePrice;
     }
 
+    /**
+     * Gets when the crop was planted on a tile.
+     *
+     * @return planted since
+     */
     public int plantedWhen() {
         return plantedSince;
     }
 
+    /**
+     * Gets a value to determine if a crop is ready for harvest.
+     *
+     * @return true if ready, false otherwise
+     */
     public boolean isReady() {
         return isReady;
     }
 
+    /**
+     * Gets a value to determine if a crop has withered.
+     *
+     * @return true if withered, false otherwise
+     */
     public boolean isWithered() {
         return isWithered;
     }
 
+    /**
+     * Sets a crop as harvestable.
+     */
     public void harvestable() {
         isReady = true;
     }
 
+    /**
+     * Sets a crop as withered.
+     */
     public void wither() {
         isWithered = true;
     }
 
+    /**
+     * Waters a crop.
+     */
     public void water() {
         timesWatered++;
     }
 
+    /**
+     * Fertilizes a crop.
+     */
     public void fertilize() {
         timesFertilized++;
     }
 
+    /**
+     * Sets a crop as watered.
+     */
     public boolean isWatered() {
         return timesWatered >= waterNeeds;
     }
 
+    /**
+     * Grows a crop if it meets the required conditions.
+     */
     public void growCrop() {
         plantedSince++;
-        if(plantedSince == harvestTime) {
-            if(timesWatered < waterNeeds) {
-                System.out.println("not watered enough");
-                JOptionPane.showMessageDialog(null, "Your crop was not watered enough and has withered.");
+        if (plantedSince == harvestTime) {
+            if (timesWatered < waterNeeds) {
+                JOptionPane.showMessageDialog(null, "Oh no! Your crop was not watered enough and has withered.");
                 wither();
             }
-            if(timesFertilized < fertilizerNeeds) {
-                System.out.println("not fertilized enough");
-                JOptionPane.showMessageDialog(null, "Your crop was not fertilized enough!");
+            if (timesFertilized < fertilizerNeeds) {
+                JOptionPane.showMessageDialog(null, "Oh no! Your crop was not fertilized enough and has withered.");
                 wither();
             }
-            else {
-                System.out.println("crop is ready");
+            if (timesWatered >= waterNeeds && timesFertilized >= fertilizerNeeds) {
+                JOptionPane.showMessageDialog(null, "Nice! You have crops ready for harvest.");
                 harvestable();
             }
         }
 
-        if(plantedSince > harvestTime) {
+        if (plantedSince > harvestTime) {
             wither();
         }
     }

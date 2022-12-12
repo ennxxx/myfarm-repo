@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
 
+/**
+ * This is a view class for the farmer's information.
+ */
 public class FarmerView extends JPanel {
 
     private JPanel farmerPanel;
@@ -64,6 +67,11 @@ public class FarmerView extends JPanel {
         this.farmerPanel.add(coinsLbl);
     }
 
+    /**
+     * Changes the font and size of a label.
+     *
+     * @param labelName name of label
+     */
     public void changeFont(JLabel labelName) {
         try {
             InputStream is = FarmerView.class.getResourceAsStream("../assets/Minecraft.ttf");
@@ -73,6 +81,11 @@ public class FarmerView extends JPanel {
         catch(Exception e){}
     }
 
+    /**
+     * Updates the farmer view accordingly.
+     *
+     * @param farmer farmers rank
+     */
     public void updateFarmerView(Farmer farmer) {
         this.rankLbl.setText(farmer.getRank().getLevelTitle());
         this.levelLbl.setText("Lvl. " + farmer.getLevel());
@@ -83,6 +96,11 @@ public class FarmerView extends JPanel {
         this.farmerPanel.repaint();
     }
 
+    /**
+     * Gets the farmer view.
+     *
+     * @return farmer panel
+     */
     public JPanel getFarmerView() {
         return farmerPanel;
     }

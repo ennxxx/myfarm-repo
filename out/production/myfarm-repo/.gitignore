@@ -13,3 +13,6 @@
 /out/production/myfarm-repo/controller/StoreController$10.class
 /out/production/myfarm-repo/controller/StoreController.class
 /out/production/myfarm-repo/view/StoreFrame.class
+/out/production
+*.class
+*.class

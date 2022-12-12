@@ -1,5 +1,8 @@
 package model.levels;
 
+/**
+ * This is a child class of FarmerRanking that returns information on a Registered Farmer.
+ */
 public class Registered extends FarmerRanking {
     public Registered(){
         levelTitle = "Registered";
@@ -11,6 +14,11 @@ public class Registered extends FarmerRanking {
         registrationFee = 200;
     }
 
+    /**
+     * Levels up the farmer.
+     *
+     * @return farmer ranking
+     */
     @Override
     public FarmerRanking nextLevel() {
         return new Distinguished();

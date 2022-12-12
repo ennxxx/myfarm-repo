@@ -1,6 +1,9 @@
 package model.crops;
 
-public class Tulips extends Crop{
+/**
+ * This is a child class of Crop that holds information about the Tulip flower.
+ */
+public class Tulips extends Crop {
     public Tulips() {
         this.name = "Tulips";
         this.cost = 10.0;
