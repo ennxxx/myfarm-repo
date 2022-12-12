@@ -106,11 +106,9 @@ public class TileView extends JPanel {
         if (tile instanceof HarvestableTile) {
             tileView.setIcon(changeTileDisplay("harvestable"));
             if (((HarvestableTile) tile).getCrop().isWatered()) {
-                System.out.println("crop is watered");
                 tileView.setIcon(changeTileDisplay("watered"));
             }
             if (((HarvestableTile) tile).getCrop().isReady()) {
-                System.out.println("harvestable");
                 tileView.setIcon(changeTileDisplay(((HarvestableTile) tile).getCrop().getName().toLowerCase()));
             }
         }

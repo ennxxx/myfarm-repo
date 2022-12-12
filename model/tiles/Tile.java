@@ -12,15 +12,6 @@ public abstract class Tile {
     protected int y;
 
     /**
-     * Sets a tile as plowed.
-     *
-     * @param true if plowed, false otherwise.
-     */
-    public void setPlowed(boolean b) {
-        isPlowed = b;
-    }
-
-    /**
      * Gets the x coordinate of a tile.
      *
      * @return x

@@ -30,15 +30,6 @@ public class Farmer {
     }
 
     /**
-     * Gets the experience points of a farmer.
-     *
-     * @return experience
-     */
-    public double getExp() {
-        return this.exp;
-    }
-
-    /**
      * Gets the level of a farmer.
      *
      * @return level
@@ -64,22 +55,6 @@ public class Farmer {
      */
     public double getObjectCoins() {
         return this.objectCoins;
-    }
-
-    /**
-     * Increases experience points of a farmer.
-     */
-    public void gainExp(double exp) {
-        this.exp += exp;
-    }
-
-    /**
-     * Increases level of a farmer.
-     *
-     * @return farmer ranking
-     */
-    public FarmerRanking nextLevel() {
-        return this.rank.nextLevel();
     }
 
     /**
@@ -157,17 +132,17 @@ public class Farmer {
      *
      * @return experience
      */
-    public double getXp() {
+    public double getExp() {
         return this.exp;
     }
 
     /**
      * Sets the experience of a farmer.
      *
-     * @param xp experience points
+     * @param exp experience points
      */
-    public void setXp(double xp) {
-        this.exp = xp;
+    public void setExp(double exp) {
+        this.exp = exp;
         int lvl = (int) this.exp / 100;
         this.level = lvl;
     }

@@ -49,15 +49,6 @@ public abstract class FarmerRanking {
     }
 
     /**
-     * Gets bonus earnings given a farmer's rank.
-     *
-     * @return bonus earnings
-     */
-    public int getBonusEarnings(){
-        return bonusEarnings;
-    }
-
-    /**
      * Gets water bonus increase given a farmer's rank.
      *
      * @return water bonus

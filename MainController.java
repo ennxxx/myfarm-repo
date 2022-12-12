@@ -345,7 +345,7 @@ public class MainController {
         tileController.updateFarmPanel();
 
         // Gives farmer experience
-        farmerController.getFarmer().setXp(farmerController.getFarmer().getXp() + currentTool.getExpGain());
+        farmerController.getFarmer().setExp(farmerController.getFarmer().getExp() + currentTool.getExpGain());
         farmerController.getFarmer().setObjectCoins(farmerController.getFarmer().getObjectCoins() - currentTool.getCost());
 
         farmerController.updateFarmerView();

@@ -66,15 +66,6 @@ public abstract class Crop {
     }
 
     /**
-     * Gets the water needs of a crop.
-     *
-     * @return water needs
-     */
-    public int getWaterNeeds() {
-        return waterNeeds;
-    }
-
-    /**
      * Gets the water bonus limit of a crop.
      *
      * @return water bonus
@@ -90,15 +81,6 @@ public abstract class Crop {
      */
     public int getTimesFertilized() {
         return timesFertilized;
-    }
-
-    /**
-     * Gets the fertilizer needs of a crop.
-     *
-     * @return fertilizer needs
-     */
-    public int getFertilizerNeeds() {
-        return fertilizerNeeds;
     }
 
     /**
@@ -120,15 +102,6 @@ public abstract class Crop {
     }
 
     /**
-     * Gets the harvest time of a crop.
-     *
-     * @return harvest time
-     */
-    public int getHarvestTime() {
-        return harvestTime;
-    }
-
-    /**
      * Gets the yield of a harvest.
      *
      * @return harvest yield
@@ -145,15 +118,6 @@ public abstract class Crop {
      */
     public double getBasePrice() {
         return basePrice;
-    }
-
-    /**
-     * Gets when the crop was planted on a tile.
-     *
-     * @return planted since
-     */
-    public int plantedWhen() {
-        return plantedSince;
     }
 
     /**
