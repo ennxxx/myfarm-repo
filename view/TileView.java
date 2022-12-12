@@ -85,7 +85,7 @@ public class TileView extends JPanel {
             case "rose" -> new ImageIcon("assets/crops/rose.png");
             case "sunflower" -> new ImageIcon("assets/crops/sunflower.png");
             case "turnip" -> new ImageIcon("assets/crops/turnip.png");
-            case "tulip" -> new ImageIcon("assets/crops/tulip.png");
+            case "tulips" -> new ImageIcon("assets/crops/tulips.png");
             default -> new ImageIcon("assets/tiles/unplowed.png");
         };
     }

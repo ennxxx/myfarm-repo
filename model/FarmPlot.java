@@ -70,17 +70,6 @@ public class FarmPlot {
     }
 
     /**
-     * Updates the tile model.
-     *
-     * @param tile tiles in a farm plot
-     * @param x x-coordinate of a tile
-     * @param y y-coordinate of a tile
-     */
-    public void updateTileModel(Tile tile, int x, int y) {
-        tiles[x][y] = tile;
-    }
-
-    /**
      * Gets the tiles in a farm plot.
      *
      * @return tiles
