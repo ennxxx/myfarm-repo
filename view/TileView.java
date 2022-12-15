@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
  */
 public class TileView extends JPanel {
     private Icon tileDisplay;
-
     private JPanel farmPanel;
     private JButton[][] tileViewIndex;
 
@@ -27,8 +26,6 @@ public class TileView extends JPanel {
         this.farmPanel.setLayout(farmLayout);
         this.farmPanel.setBounds(250, 260, 772, 382);
 
-        int height = 5;
-        int width = 10;
         this.tileViewIndex = new JButton[5][10];
 
         // Sets all tiles as unplowed

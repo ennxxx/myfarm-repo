@@ -194,6 +194,7 @@ public abstract class Crop {
         }
 
         if (plantedSince > harvestTime) {
+            JOptionPane.showMessageDialog(null, "Oh no! You missed the harvest time of your crop.");
             wither();
         }
     }

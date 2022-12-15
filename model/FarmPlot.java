@@ -56,8 +56,7 @@ public class FarmPlot {
         // Initialize all tiles
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
-                if(!tileStack.empty() && tileStack.pop() == 'r' && rockCounter < 30) {
-                    System.out.println("rock");
+                if (!tileStack.empty() && tileStack.pop() == 'r' && rockCounter < 30) {
                     tiles[i][j] = new UnavailableTile("rock");
                     rockCounter++;
                 } else {

@@ -5,7 +5,7 @@ package model.levels;
  */
 public class Registered extends FarmerRanking {
     public Registered(){
-        levelTitle = "Registered";
+        levelTitle = "Registered Farmer";
         levelRequirement = 5;
         bonusEarnings = 1;
         seedDiscount = 1;
