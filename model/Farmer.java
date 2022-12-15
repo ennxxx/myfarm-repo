@@ -22,10 +22,10 @@ public class Farmer {
      */
     public Farmer() {
         this.activeTile = null;
-        this.exp = 480;
+        this.exp = 0;
         this.level = 0;
         this.rank = new Default();
-        this.objectCoins = 500;
+        this.objectCoins = 100;
         this.days = 1;
     }
 

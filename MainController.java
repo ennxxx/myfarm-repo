@@ -256,7 +256,7 @@ public class MainController {
         // Guard clause for harvesting
         if (activeTile instanceof HarvestableTile){
             if (!((HarvestableTile) activeTile).getCrop().isReady()){
-                feedbackView.updateFeedback("Crop is not ready to be harvested");
+                feedbackView.updateFeedback("Crop is not ready to be harvested.");
                 return;
             }
         }
