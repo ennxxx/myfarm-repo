@@ -267,11 +267,19 @@ public class MainController {
             // Get the crop from the tile
             Crop harvestedCrop = ((HarvestableTile) activeTile).getCrop();
 
-            double sellPrice = harvestedCrop.getBasePrice();
             int yield = harvestedCrop.getHarvestYield();
+            double harvestTotal = yield * (harvestedCrop.getBasePrice() * farmerController.getFarmer().getRank().getBonusEarnings());
+            double waterBonus = harvestTotal * 0.2 * (harvestedCrop.getTimesWatered()-1);
+            double fertilizerBonus = harvestTotal * 0.5 * harvestedCrop.getTimesFertilized();
+            double finalHarvestPrice = harvestTotal + waterBonus + fertilizerBonus;
+
+            if(harvestedCrop.getType().equalsIgnoreCase("Flower")){
+                finalHarvestPrice = finalHarvestPrice * 1.1;
+            }
+
             farmerController.getFarmer().setObjectCoins(
                     farmerController.getFarmer().getObjectCoins() +
-                    sellPrice);
+                    finalHarvestPrice);
 
             // Replace active tile with a new available tile
             AvailableTile farmerTile = new AvailableTile();
@@ -286,7 +294,7 @@ public class MainController {
 
             Feedback harvestFeedback = new Feedback();
             harvestFeedback.setPrompt("" +
-                    "You harvested a crop of " + yield + " " + harvestedCrop.getName() + " for " + sellPrice + " coins!");
+                    "You harvested a crop of " + yield + " " + harvestedCrop.getName() + " for " + finalHarvestPrice + " coins!");
             feedbackView.updateFeedback(harvestFeedback.getPrompt());
         }
     }

@@ -22,6 +22,15 @@ public abstract class FarmerRanking {
     public abstract FarmerRanking nextLevel();
 
     /**
+     * Gets the bonus earnings of a farmer.
+     *
+     * @return bonus earnings
+     */
+    public int getBonusEarnings() {
+        return bonusEarnings;
+    }
+
+    /**
      * Gets level requirements.
      *
      * @return level requirement
