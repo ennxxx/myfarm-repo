@@ -268,7 +268,7 @@ public class MainController {
             Crop harvestedCrop = ((HarvestableTile) activeTile).getCrop();
 
             int yield = harvestedCrop.getHarvestYield();
-            double harvestTotal = yield * (harvestedCrop.getBasePrice() * farmerController.getFarmer().getRank().getBonusEarnings());
+            double harvestTotal = yield * (harvestedCrop.getBasePrice() + farmerController.getFarmer().getRank().getBonusEarnings());
             double waterBonus = harvestTotal * 0.2 * (harvestedCrop.getTimesWatered()-1);
             double fertilizerBonus = harvestTotal * 0.5 * harvestedCrop.getTimesFertilized();
             double finalHarvestPrice = harvestTotal + waterBonus + fertilizerBonus;
