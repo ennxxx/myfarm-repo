@@ -268,9 +268,9 @@ public class MainController {
             Crop harvestedCrop = ((HarvestableTile) activeTile).getCrop();
 
             int yield = harvestedCrop.getHarvestYield();
-            double harvestTotal = yield * (harvestedCrop.getBasePrice() + farmerController.getFarmer().getRank().getBonusEarnings());
-            double waterBonus = harvestTotal * 0.2 * (harvestedCrop.getTimesWatered()-1);
-            double fertilizerBonus = harvestTotal * 0.5 * harvestedCrop.getTimesFertilized();
+            double harvestTotal = yield * (harvestedCrop.getBasePrice() + (double)farmerController.getFarmer().getRank().getBonusEarnings());
+            double waterBonus = harvestTotal * 0.2 * ((double)harvestedCrop.getTimesWatered()-1);
+            double fertilizerBonus = harvestTotal * 0.5 * (double)harvestedCrop.getTimesFertilized();
             double finalHarvestPrice = harvestTotal + waterBonus + fertilizerBonus;
 
             if(harvestedCrop.getType().equalsIgnoreCase("Flower")){
