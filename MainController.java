@@ -280,6 +280,9 @@ public class MainController {
             farmerController.getFarmer().setObjectCoins(
                     farmerController.getFarmer().getObjectCoins() +
                     finalHarvestPrice);
+            farmerController.getFarmer().setExp(
+                    farmerController.getFarmer().getExp() +
+                    harvestedCrop.getExpGain());
 
             // Replace active tile with a new available tile
             AvailableTile farmerTile = new AvailableTile();
